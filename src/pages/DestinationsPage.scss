@@ -1,0 +1,12 @@
+@use '../styles/mixins' as*;
+@use '../styles/variables' as*;
+
+
+.destinations {
+    padding: 2rem 4rem;
+    &__title {
+        @include font($size: 3rem, $weight:600);
+        margin:0;
+        padding-bottom: 3.75rem;
+    }
+}

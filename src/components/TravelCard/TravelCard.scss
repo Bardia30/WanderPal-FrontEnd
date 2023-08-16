@@ -1,0 +1,27 @@
+@use '../../styles/mixins' as*;
+@use '../../styles/variables' as*;
+
+
+.card {
+    width: 16.875rem;
+    height: 23.75rem;
+    border-radius: 32px;
+    box-shadow: 25px 25px 50px 15px rgba(81, 81, 81, 0.26);
+    &__bottom-section {
+        padding: 0.75rem 0.75rem 1.125rem 1.0625rem;
+    }
+    &__title {
+        @include font($size: 2rem, $weight:600);
+        margin:0;
+    }
+    &__date {
+        @include font($size:1.25rem)
+    }
+    &__buttons-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top:2rem;
+    }
+    
+}

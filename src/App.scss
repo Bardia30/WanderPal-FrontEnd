@@ -8,5 +8,8 @@ body {
     margin: 0;
     font-family:$font;
     background: $primary-background;
+}
+
+#root{
     display: flex;
 }

@@ -1,0 +1,15 @@
+@use '../../styles/mixins' as*;
+@use '../../styles/variables' as*;
+
+
+
+.cta {
+    background: $secondary-text;
+    color: $primary-background;
+    text-transform: uppercase;
+    border:none;
+    padding:0.6875rem 0.875rem;
+    border-radius: 10px;
+    cursor:pointer;
+    @include font($weight:600, $color: $primary-background)
+}
