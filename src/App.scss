@@ -1,0 +1,12 @@
+@use './styles/mixins' as*;
+@use './styles/variables' as*;
+
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&family=Urbanist:wght@400;600&display=swap');
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    font-family:$font;
+    background: $primary-background;
+    display: flex;
+}

@@ -1,0 +1,33 @@
+@use './variables' as*;
+
+
+//desktop viewport mixin, refer to vriables for breakpoints
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint){
+        @content;
+    }
+}
+
+//tablet viewport mixin, refer to vriables for breakpoints
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint){
+        @content;
+    }
+}
+
+//styling for flexbox positioning
+@mixin flex($align: normal, $justify:normal, $direction:row, $wrap: nowrap) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction:$direction;
+    flex-wrap:$wrap;
+}
+
+
+//styling for fonts
+@mixin font($size:1rem, $weight: 400, $color:$primary-text) {
+    font-size:$size;
+    font-weight:$weight;
+    color: $color; 
+}
