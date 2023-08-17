@@ -1,0 +1,59 @@
+@use '../../styles/mixins' as*;
+@use '../../styles/variables' as*;
+
+
+.add-dest {
+    background: rgba(0, 28, 48, 0.50);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.add-new {
+    border-radius: 32px;
+    padding:2.25rem 5.625rem 11rem 2.125rem;
+    margin-top:8.5rem;
+    background: $primary-background;
+    width: 48.5rem;
+    height: 33.625rem;
+    display: flex;
+    flex-direction: column;
+    &__title {
+        @include font($size: 2rem, $color: $secondary-text, $weight:600);
+        margin:0;
+        margin-bottom: 2.25rem;
+    }
+    &__left-section {
+        display: flex;
+        flex-direction: column;
+    }
+    &__top-section {
+        display: flex;
+    }
+    &__datepicker {
+        width:40rem !important;
+        margin-top:6.875rem !important;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-evenly;
+        width:100%;
+        margin-top: 4.8rem;
+    }
+    &__add-cta{
+        letter-spacing: 3.52px;
+        font-size:1rem;
+    }
+    &__cancel-cta {
+        background:$primary-background;
+        color:$secondary-text;
+        font-weight:400;
+        
+    }
+}

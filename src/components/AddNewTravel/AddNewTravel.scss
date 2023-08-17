@@ -1,0 +1,20 @@
+@use '../../styles/mixins' as*;
+@use '../../styles/variables' as*;
+
+
+.add-new-button {
+    width: 16.875rem;
+    height: 18.75rem;
+    background: $secondary-text;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 32px;
+    cursor: pointer;
+    &__title{
+        margin:0;
+        @include font($size:2rem, $color: $primary-background, $weight: 600);
+        margin-top:2.4rem;
+    }
+}
