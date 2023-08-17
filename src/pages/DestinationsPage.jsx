@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DestinationsPage.scss';
 import TravelCard from '../components/TravelCard/TravelCard';
 import AddNewTravel from '../components/AddNewTravel/AddNewTravel';
 import AddNewTravelModal from '../components/AddNewTravelModal/AddNewTravelModal';
+import DeleteTravelModal from '../components/DeleteTravelModal/DeleteTravelModal';
 
 const DestinationsPage = () => {
   const [addNewModalClicked, setAddNewModalClicked] = useState(false);
- 
+  const [isDeleteClicked, setIsDeleteClicked] = useState(false);
+  const [travelId, setTravelId] = useState("");
+
+  //test to see how we can delete http requests. I am using dummy id for now. 
+  useEffect(()=> {
+    console.log(travelId);
+  }, [travelId]);
+
   return (
     <React.Fragment>
     <section className="destinations">
       <h1 className='destinations__title'>Bardia's Travel Destinations</h1>
       <div className='destinations__cards'>
-        <TravelCard />
-        <TravelCard />
-        <TravelCard />
-        <TravelCard />
+        <TravelCard id="dummyId" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
+        <TravelCard id="dummyId2" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
+        <TravelCard id="dummyId3" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
+        <TravelCard id="dummyId4" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
         
       </div>
       
@@ -25,6 +33,9 @@ const DestinationsPage = () => {
     </section>
     {
       addNewModalClicked && <AddNewTravelModal setAddNewModalClicked={setAddNewModalClicked}/>
+    }
+    {
+      isDeleteClicked && <DeleteTravelModal travelId={travelId} setIsDeleteClicked={setIsDeleteClicked}/>
     }
       
     </React.Fragment>
