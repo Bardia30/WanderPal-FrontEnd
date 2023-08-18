@@ -29,12 +29,14 @@
         margin:0;
         margin-bottom: 2.25rem;
     }
-    &__left-section {
-        display: flex;
-        flex-direction: column;
-    }
+    // &__left-section {
+    //     display: flex;
+    //     flex-direction: column;
+    // }
     &__top-section {
         display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     &__datepicker {
         width:40rem !important;
@@ -55,5 +57,9 @@
         color:$secondary-text;
         font-weight:400;
         
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
     }
 }

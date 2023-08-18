@@ -8,15 +8,12 @@ import ScheduleDetailPage from './pages/ScheduleDetailPage';
 import FavoritesPage from './pages/FavoritesPage';
 import TravelDetailsDeletePage from './pages/TravelDetailsDeletePage';
 import Sidebar from './components/Sidebar/Sidebar'; 
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import './App.scss';
 
 
 
 function App() {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
     <BrowserRouter>
     <Sidebar />
      <main>
@@ -33,7 +30,6 @@ function App() {
       </Routes>
       </main>
     </BrowserRouter>
-    </LocalizationProvider>
   );
 }
 

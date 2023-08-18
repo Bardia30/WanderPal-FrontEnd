@@ -1,8 +1,8 @@
 import React from 'react'
 
-const InputField = ({ type, inputClass, placeholder}) => {
+const InputField = ({ onFocus, onBlur, type, inputClass, placeholder}) => {
   return (
-    <input type={type} className={`input ${inputClass}`} placeholder={placeholder}/>
+    <input onBlur={onBlur} onFocus={onFocus} type={type} className={`input ${inputClass}`} placeholder={placeholder}/>
   )
 }
 

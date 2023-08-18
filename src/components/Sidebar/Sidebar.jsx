@@ -10,17 +10,17 @@ const Sidebar = () => {
   return (
     <header>
       <nav className='sidebar'>
-        <img className='sidebar__user-pic' src={userPic} alt="user-picture" />
+        <img className='sidebar__user-pic' src={userPic} alt="user" />
         <section className='sidebar__menu-item'>
-          <img className='sidebar__logo' src={homeLogo} alt="home-logo" />
+          <img className='sidebar__logo' src={homeLogo} alt="home" />
           <p className='sidebar__menu-text'>home</p>
         </section>
         <section className='sidebar__menu-item'>
-          <img className='sidebar__logo' src={favoritesLogo} alt="favorites-logo" />
+          <img className='sidebar__logo' src={favoritesLogo} alt="favorites" />
           <p className='sidebar__menu-text'>favorites</p>
         </section>
         <section className='sidebar__menu-item'>
-          <img className='sidebar__logo' src={scheduleLogo} alt="schedule-logo" />
+          <img className='sidebar__logo' src={scheduleLogo} alt="schedule" />
           <p className='sidebar__menu-text'>schedule</p>
         </section>
       </nav>
