@@ -17,4 +17,8 @@
         @include font($size:2rem, $color: $primary-background, $weight: 600);
         margin-top:2.4rem;
     }
+    &--dark {
+        background: $primary-text;
+        border: 1px solid $primary-background;
+    }
 }

@@ -9,11 +9,32 @@ import FavoritesPage from './pages/FavoritesPage';
 import TravelDetailsDeletePage from './pages/TravelDetailsDeletePage';
 import Sidebar from './components/Sidebar/Sidebar'; 
 import './App.scss';
+import ThemeContext from './components/context/theme-context';
+import { useState } from 'react';
 
 
 
 function App() {
+
+  const [theme, setTheme] = useState("light");
+
+
+
+  const changeTheme = ()=> {
+    if (theme === "light") {
+      setTheme("dark");
+      document.body.style.background = "#001C30"
+    } else {
+      setTheme("light");
+      document.body.style.background = "#F1FFFE"
+    }
+  }
+
+
+  
+
   return (
+    <ThemeContext.Provider value={{theme, changeTheme}}>
     <BrowserRouter>
     <Sidebar />
      <main>
@@ -30,6 +51,7 @@ function App() {
       </Routes>
       </main>
     </BrowserRouter>
+    </ThemeContext.Provider>
   );
 }
 

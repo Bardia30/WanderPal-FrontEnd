@@ -24,7 +24,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        &--dark {
+            background: $primary-text;
+            border:1px solid $primary-background;
+        }
     }
     &__close-logo {
         align-self: flex-end;
@@ -38,6 +41,9 @@
         margin-bottom: 2.25rem;
         width: 75%;
         text-align:center;
+        &--dark {
+            color: $primary-background;
+        }
     }
 
 
@@ -52,12 +58,17 @@
         font-size:1rem;
         background: $delete-button-color;
         width:12.5rem;
+        border:none;
     }
     &__cancel-cta {
         background:$primary-background;
         color:$secondary-text;
         font-weight:400;
-        
+        &--dark{
+            color:$primary-background;
+            background:none;
+            border:none;
+        }
     }
     
 }

@@ -15,4 +15,11 @@
         @include font($size:1.2rem, $color: $secondary-text);
         letter-spacing: 3.6px;
     }
+    &--dark {
+        background:$primary-text;
+        border: 1px solid $primary-background;
+        &::placeholder{
+            color: $primary-background;
+        }
+    }
 }

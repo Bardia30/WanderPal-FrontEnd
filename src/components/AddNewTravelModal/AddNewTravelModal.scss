@@ -24,15 +24,19 @@
     height: 33.625rem;
     display: flex;
     flex-direction: column;
+    &--dark {
+        background: $primary-text;
+        border:1px solid $primary-background;
+    }
     &__title {
         @include font($size: 2rem, $color: $secondary-text, $weight:600);
         margin:0;
         margin-bottom: 2.25rem;
+        &--dark {
+            color:$primary-background;
+        }
     }
-    // &__left-section {
-    //     display: flex;
-    //     flex-direction: column;
-    // }
+    
     &__top-section {
         display: flex;
         flex-direction: column;
@@ -53,10 +57,13 @@
         font-size:1rem;
     }
     &__cancel-cta {
-        background:$primary-background;
+        background:none;
         color:$secondary-text;
         font-weight:400;
-        
+        border:none;
+        &--dark {
+            color: $primary-background;
+        }
     }
     &__form {
         display: flex;

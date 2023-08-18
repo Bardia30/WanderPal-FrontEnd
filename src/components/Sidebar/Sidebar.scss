@@ -1,8 +1,8 @@
 @use '../../styles/mixins' as*;
 @use '../../styles/variables' as*;
 
-header{
-    background:$secondary-text;
+.header{
+    
     width: 6.25rem;
     display: flex;
     flex-direction: column;
@@ -12,10 +12,40 @@ header{
         height: 100vh;
         width: 6.25rem;
     }
+    &--dark{
+        background:$primary-text;
+        border-right: 1px solid $primary-background;
+    }
+    &--light {
+        background:$secondary-text;
+    }
 }
 
 
 .sidebar {
+    padding-top:3.375rem;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    &__user-pic {
+        padding-bottom:2rem;
+    }
+    &__menu-text {
+        @include font($weight: 600, $color:$primary-background);
+        text-transform: uppercase;
+        margin:0;
+        padding-top:0.5rem;
+    }
+    &__menu-item {
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        padding-bottom:2.5rem;
+        cursor:pointer;
+    }
+}
+
+.sidebar-dark {
     padding-top:3.375rem;
     display: flex;
     flex-direction:column;
@@ -55,14 +85,26 @@ header{
         width:2rem;
         background: $primary-text;
         cursor:pointer;
+        &--light {
+            background: $primary-text;
+        }
+        &--dark{
+            background: $primary-background;
+        }
     }
     &__slot {
         width: 4.125rem;
         height: 2rem;
-        background: $primary-background;
         border-radius: 32px;
         margin-bottom:1rem;
         display: flex;
-        justify-content: flex-end;
+        
+        &--light {
+            background: $primary-background;
+            justify-content: flex-end;
+        }
+        &--dark {
+            background: $secondary-text;
+        }
     }
 }

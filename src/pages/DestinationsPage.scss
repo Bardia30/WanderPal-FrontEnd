@@ -8,6 +8,9 @@
         @include font($size: 3rem, $weight:600);
         margin:0;
         padding-bottom: 3.75rem;
+        &--dark {
+            color:$primary-background;
+        }
     }
     &__cards {
         display: flex;

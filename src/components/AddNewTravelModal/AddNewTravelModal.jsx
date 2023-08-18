@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './AddNewTravelModal.scss';
 import '../InputField/InputField';
 import InputField from '../InputField/InputField';
 import '../InputField/InputField.scss';
 import Button from '../Button/Button';
-
+import ThemeContext from '../context/theme-context';
 
 const AddNewTravelModal = ({ setAddNewModalClicked }) => {
+    const {theme} = useContext(ThemeContext);
+    
+    
     const handleCloseModal = () => {
         setAddNewModalClicked(false);
     }
@@ -36,10 +39,10 @@ const AddNewTravelModal = ({ setAddNewModalClicked }) => {
 
     return (
         <div onClick={handleCloseModal} className='add-dest'>
-            <section onClick={e => e.stopPropagation()} className='add-new'>
+            <section onClick={e => e.stopPropagation()} className={`add-new add-new--${theme}`}>
                 <section className='add-new__top-section'>
                     {/* <section className='add-new__left-section'> */}
-                        <h1 className='add-new__title'>Add Your New Adventure!</h1>
+                        <h1 className={`add-new__title add-new__title--${theme}`}>Add Your New Adventure!</h1>
                         <form className='add-new__form' action="submit">
                             <InputField
                                 type="text"
@@ -72,7 +75,7 @@ const AddNewTravelModal = ({ setAddNewModalClicked }) => {
 
                 <div className='add-new__buttons'>
                     <Button
-                        buttonClass="add-new__cancel-cta"
+                        buttonClass={`add-new__cancel-cta add-new__cancel-cta--${theme}`}
                         text="cancel"
                     />
                     <Button

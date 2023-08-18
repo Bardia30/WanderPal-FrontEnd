@@ -6,16 +6,29 @@
     width: 16.875rem;
     height: 23.75rem;
     border-radius: 32px;
-    box-shadow: 25px 25px 50px 15px rgba(81, 81, 81, 0.26);
+    
+    &--light {
+        box-shadow: 25px 25px 50px 15px rgba(81, 81, 81, 0.26);
+    }
+    &--dark {
+        background: $primary-text;
+        border: 1px solid $primary-background;
+    }
     &__bottom-section {
         padding: 0.75rem 0.75rem 1.125rem 1.0625rem;
     }
     &__title {
         @include font($size: 2rem, $weight:600);
         margin:0;
+        &--dark {
+            color: $primary-background;
+        }
     }
     &__date {
-        @include font($size:1.25rem)
+        @include font($size:1.25rem);
+        &--dark {
+            color: $primary-background;
+        }
     }
     &__buttons-section {
         display: flex;
