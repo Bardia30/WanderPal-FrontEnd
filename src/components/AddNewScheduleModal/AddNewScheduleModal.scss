@@ -1,0 +1,70 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as*;
+
+.wrapper {
+    background: rgba(0, 28, 48, 0.50);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.add-sched {
+    border-radius: 32px;
+    padding:2.25rem 2.125rem 0 2.125rem;
+    margin-top:8.5rem;
+    background: $primary-background;
+    width: 42.5rem;
+    height: 33.625rem;
+    display: flex;
+    flex-direction: column;
+    &--dark {
+        background: $primary-text;
+        border:1px solid $primary-background;
+    }
+    &__title {
+        @include font($size: 2rem, $color: $secondary-text, $weight:600);
+        margin:0;
+        margin-bottom: 2.5rem;
+        align-self: flex-start;
+        &--dark {
+            color:$primary-background;
+        }
+    }
+    
+    &__top-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__datepicker {
+        width:40rem !important;
+        margin-top:6.875rem !important;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: space-evenly;
+        width:100%;
+        margin-top: 4.8rem;
+    }
+    &__add-cta{
+        letter-spacing: 3.52px;
+        font-size:1rem;
+    }
+    &__cancel-cta {
+        background:none;
+        color:$secondary-text;
+        font-weight:400;
+        border:none;
+        &--dark {
+            color: $primary-background;
+        }
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+}

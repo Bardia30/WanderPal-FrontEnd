@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import Button from '../components/Button/Button';
 import DropDown from '../components/DropDown/DropDown';
 import backButton from '../assets/back-logo.png';
@@ -10,14 +10,17 @@ import likeLogo from '../assets/like.png';
 import restoPic from '../assets/temp-rest-pic.png';
 import './TravelDetailsPage.scss';
 import ThemeContext from '../components/context/theme-context';
+import AddNewScheduleModal from '../components/AddNewScheduleModal/AddNewScheduleModal';
 
 
 
 const TravelDetailsPage = () => {
   const {theme} = useContext(ThemeContext);
   
+  const [isAddScheduleClicked, setIsAddScheduleClicked] = useState(false)
   
   return (
+    <>
     <div className="travel">
       <section className='travel__upper-section'>
         <section className='travel__upper-left'>
@@ -59,15 +62,21 @@ const TravelDetailsPage = () => {
               <Button
                 text="Add to schedule"
                 buttonClass="travel__add-schedule-button"
+                onClick={setIsAddScheduleClicked}
               />
             </div>
           </section>
         </div>
-        <section>
+        <section className='map-section'>
 
         </section>
       </div>
     </div>
+
+    {isAddScheduleClicked &&
+      <AddNewScheduleModal setIsAddScheduleClicked={setIsAddScheduleClicked}/>
+    }
+    </>
   )
 }
 
