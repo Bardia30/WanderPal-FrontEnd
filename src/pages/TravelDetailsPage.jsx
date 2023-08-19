@@ -11,14 +11,26 @@ import restoPic from '../assets/temp-rest-pic.png';
 import './TravelDetailsPage.scss';
 import ThemeContext from '../components/context/theme-context';
 import AddNewScheduleModal from '../components/AddNewScheduleModal/AddNewScheduleModal';
-
+import EditTravelModal from '../components/EditTravelModal/EditTravelModal';
 
 
 const TravelDetailsPage = () => {
   const {theme} = useContext(ThemeContext);
   
   const [isAddScheduleClicked, setIsAddScheduleClicked] = useState(false)
+
+  const [isEditTravelClicked, setIsEditTravelClicked] = useState(false)
   
+
+  const travelObj = {
+    destination: "Las Vegas",
+    hotel: "Caesar's Palace",
+    arrival: "Saturday, September 16th",
+    departure: "Wednesday, September 20th"
+  }
+
+
+
   return (
     <>
     <div className="travel">
@@ -41,6 +53,7 @@ const TravelDetailsPage = () => {
             <Button
               text="edit travel"
               buttonClass="travel__edit-cta"
+              onClick={setIsEditTravelClicked}
              />
           </section>
           <DropDown />
@@ -76,6 +89,13 @@ const TravelDetailsPage = () => {
     {isAddScheduleClicked &&
       <AddNewScheduleModal setIsAddScheduleClicked={setIsAddScheduleClicked}/>
     }
+    
+    {isEditTravelClicked &&
+      <EditTravelModal setIsEditTravelClicked={setIsEditTravelClicked} travel={travelObj}/>
+    }
+
+
+
     </>
   )
 }
