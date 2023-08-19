@@ -4,7 +4,8 @@ import DropDown from '../components/DropDown/DropDown';
 import backButton from '../assets/back-logo.png';
 import mapLogo from '../assets/map.png';
 import likeLogo from '../assets/like.png';
-import restoPic from '../assets/temp-rest-pic.png'
+import restoPic from '../assets/temp-rest-pic.png';
+import './TravelDetailsPage.scss';
 
 
 const TravelDetailsPage = () => {

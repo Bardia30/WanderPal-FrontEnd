@@ -1,0 +1,120 @@
+@use '../styles/mixins' as *;
+@use '../styles/variables' as *;
+
+
+
+.travel {
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    &__upper-section{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__upper-left {
+        display: flex;
+        align-items: center;
+
+    }
+    &__back-logo{
+        width:3rem;
+        height: 3rem;
+        margin-right:2rem;
+    }
+    &__title{
+        margin: 0;
+        @include font($size: 3rem, $weight:600 , $color:$primary-text);
+    }
+    &__schedule-cta {
+
+    }
+    &__mid-section {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2.5rem;
+    }
+    &__mid-left {
+        margin-right: 3.875rem;
+    }
+    &__details-card {
+        display: flex;
+        flex-direction:column;
+        width: 25.125rem;
+        height: 14.75rem;
+        padding: 2rem 1.5rem;
+        border-radius: 32px;
+        box-shadow: $shadow;
+        margin-bottom: 2rem;
+    }
+    &__details-title {
+        margin:0;
+        text-transform: capitalize;
+        @include font($size:2rem, $color: $secondary-text);
+        &--bold {
+            font-weight: 600;
+        }
+    }
+    &__dates {
+        margin: 2.375rem 0 0 0;
+        @include font($size:1.25rem, $color:$secondary-text);
+        &--bold {
+            font-weight: 600;
+        }
+    }
+    &__edit-cta {
+        margin-top: 2.5rem;
+        align-self: flex-end;
+    }
+
+    &__mid-right {
+        display: flex;
+        width: 43.75rem;
+        height: 23.75rem;
+        border-radius: 32px;
+        box-shadow: $shadow;
+    }
+    &__rest-pic {
+
+    }
+    &__texts-section {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    &__restaurant-name {
+        margin:0;
+        @include font($size: 2rem ,$weight: 600,  $color: $secondary-text);
+    }
+    &__restaurant-details {
+        margin:0;
+        margin-top:1.5rem;
+        @include font($size:1.25rem, $color:$secondary-text); 
+        &--bold{
+            font-weight: 600;
+        }
+    }
+    &__restaurant-website-link {
+        text-decoration: none;
+        @include font($size: 1.25rem, $weight:600, $color:$secondary-text);
+        text-transform: uppercase;
+        margin: 1.5rem 0 1rem 0;
+    }
+    &__restaurant-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 125%;
+    }
+    &__map-logo {
+        margin-right:1rem;
+        cursor: pointer;
+    }
+    &__like-logo {
+        cursor: pointer;
+    }
+    &__add-schedule-button {
+        text-transform: capitalize;
+        
+    }
+}
