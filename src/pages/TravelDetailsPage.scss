@@ -4,7 +4,7 @@
 
 
 .travel {
-    padding: 2rem 4rem;
+    padding: 2rem 3rem;
     display: flex;
     flex-direction: column;
     &__upper-section{
@@ -25,6 +25,9 @@
     &__title{
         margin: 0;
         @include font($size: 3rem, $weight:600 , $color:$primary-text);
+        &--dark {
+            color:$primary-background;
+        }
     }
     &__schedule-cta {
 
@@ -46,6 +49,10 @@
         border-radius: 32px;
         box-shadow: $shadow;
         margin-bottom: 2rem;
+        &--dark {
+            border: 1px solid $primary-background;
+            box-shadow: none;
+        }
     }
     &__details-title {
         margin:0;
@@ -54,12 +61,18 @@
         &--bold {
             font-weight: 600;
         }
+        &--dark {
+            color:$primary-background;
+        }
     }
     &__dates {
         margin: 2.375rem 0 0 0;
         @include font($size:1.25rem, $color:$secondary-text);
         &--bold {
             font-weight: 600;
+        }
+        &--dark {
+            color:$primary-background;
         }
     }
     &__edit-cta {
@@ -73,6 +86,10 @@
         height: 23.75rem;
         border-radius: 32px;
         box-shadow: $shadow;
+        &--dark {
+            border: 1px solid $primary-background;
+            box-shadow: none;
+        }
     }
     &__rest-pic {
 
@@ -85,6 +102,9 @@
     &__restaurant-name {
         margin:0;
         @include font($size: 2rem ,$weight: 600,  $color: $secondary-text);
+        &--dark {
+            color:$primary-background;
+        }
     }
     &__restaurant-details {
         margin:0;
@@ -93,12 +113,18 @@
         &--bold{
             font-weight: 600;
         }
+        &--dark {
+            color:$primary-background;
+        }
     }
     &__restaurant-website-link {
         text-decoration: none;
         @include font($size: 1.25rem, $weight:600, $color:$secondary-text);
         text-transform: uppercase;
         margin: 1.5rem 0 1rem 0;
+        &--dark {
+            color:$primary-background;
+        }
     }
     &__restaurant-buttons {
         display: flex;

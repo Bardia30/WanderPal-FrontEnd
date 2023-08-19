@@ -4,7 +4,7 @@
 
 
 .dropdown {
-    width: 23.125em;
+    width: 25.125em;
     height: 1.5rem;
     padding: 1.125rem 1.875rem;
     display: flex;
@@ -12,6 +12,10 @@
     align-items: center;
     border-radius: 8px;
     box-shadow: 12px 12px 25px 7px rgba(81, 81, 81, 0.26);
+    &--dark {
+        border: 1px solid $primary-background;
+        box-shadow: none;
+    }
     cursor: pointer;
     &--dropped{
         border-bottom-right-radius: 0;
@@ -21,6 +25,9 @@
     &__title {
         @include font($size: 1.15rem, $weight:600, $color:$primary-text);
         text-transform: uppercase;
+        &--dark {
+            color: $primary-background;
+        }
     }
     &__drop-logo{
         width: 1rem;
@@ -37,11 +44,18 @@
         padding: 1rem 1.875rem;
         border-bottom-right-radius: 8px;
         border-bottom-left-radius: 8px;
+        &--dark {
+            box-shadow: none;
+            border:1px solid $primary-background;
+        }
     }
     &__item {
         margin-top:0.875rem;
         @include font($size: 1.15rem, $color:$secondary-text, $weight:600);
         letter-spacing: 2px;
         cursor: pointer;
+        &--dark {
+            color: $primary-background;
+        }
     }
 }

@@ -8,10 +8,12 @@ body {
     margin: 0;
     font-family:$font;
     // background: $primary-background;
+    transition: 0.25s ease-in;
 }
 
 
 
 #root{
     display: flex;
+    
 }

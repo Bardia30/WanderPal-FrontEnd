@@ -36,7 +36,7 @@ const Sidebar = () => {
         </section>
       </nav>
       <div className={`dark-light dark-light--${theme}`}>
-        <p className={`dark-light__text dark-light__text--${theme} `}>{theme === "light" ? "Light Mode" : "Dark Mode"}</p>
+        <p className={`dark-light__text dark-light__text--${theme} `}>{theme === "light" ? "Dark Mode" : "Light Mode"}</p>
         <div className={`dark-light__slot dark-light__slot--${theme}`}>
         <div onClick={changeTheme} className={`dark-light__button dark-light__button--${theme}`} ></div>
         </div>
