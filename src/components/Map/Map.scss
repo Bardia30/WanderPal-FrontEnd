@@ -1,0 +1,12 @@
+@use "../../styles/mixins" as *;
+@use '../../styles/variables' as *;
+
+
+
+.map {
+    height:500px;
+    width:100%;
+    margin-top: 2rem;
+    border-radius: 32px;
+    overflow: hidden;
+}

@@ -12,6 +12,7 @@ import './TravelDetailsPage.scss';
 import ThemeContext from '../components/context/theme-context';
 import AddNewScheduleModal from '../components/AddNewScheduleModal/AddNewScheduleModal';
 import EditTravelModal from '../components/EditTravelModal/EditTravelModal';
+import Map from '../components/Map/Map';
 
 
 const TravelDetailsPage = () => {
@@ -26,7 +27,11 @@ const TravelDetailsPage = () => {
     destination: "Las Vegas",
     hotel: "Caesar's Palace",
     arrival: "Saturday, September 16th",
-    departure: "Wednesday, September 20th"
+    departure: "Wednesday, September 20th",
+    location: {
+      lat: 36.11702,
+      lng: -115.17471
+    }
   }
 
 
@@ -80,10 +85,12 @@ const TravelDetailsPage = () => {
             </div>
           </section>
         </div>
-        <section className='map-section'>
-
-        </section>
+        {/* <section className='map-section'>
+          <Map />
+        </section> */}
+        
       </div>
+      <Map location={travelObj.location}/>
     </div>
 
     {isAddScheduleClicked &&
