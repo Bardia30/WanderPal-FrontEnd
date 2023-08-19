@@ -1,0 +1,47 @@
+@use '../../styles/mixins' as*;
+@use '../../styles/variables' as*;
+
+
+
+.dropdown {
+    width: 23.125em;
+    height: 1.5rem;
+    padding: 1.125rem 1.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 12px 12px 25px 7px rgba(81, 81, 81, 0.26);
+    cursor: pointer;
+    &--dropped{
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom: 1px solid $secondary-text;
+    }
+    &__title {
+        @include font($size: 1.15rem, $weight:600, $color:$primary-text);
+        text-transform: uppercase;
+    }
+    &__drop-logo{
+        width: 1rem;
+        height: 1rem;
+        
+        &--inverted {
+            transform: rotate(180deg);
+        }
+    }
+    &__list {
+        list-style: none;
+        box-shadow: 12px 12px 25px 7px rgba(81, 81, 81, 0.26);
+        margin:0;
+        padding: 1rem 1.875rem;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+    &__item {
+        margin-top:0.875rem;
+        @include font($size: 1.15rem, $color:$secondary-text, $weight:600);
+        letter-spacing: 2px;
+        cursor: pointer;
+    }
+}
