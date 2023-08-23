@@ -1,4 +1,5 @@
-import {useContext, useState} from 'react'
+import {useContext, useState, useEffect} from 'react';
+import axios from 'axios';
 import Button from '../components/Button/Button';
 import DropDown from '../components/DropDown/DropDown';
 import backButton from '../assets/back-logo.png';
@@ -13,6 +14,7 @@ import ThemeContext from '../components/context/theme-context';
 import AddNewScheduleModal from '../components/AddNewScheduleModal/AddNewScheduleModal';
 import EditTravelModal from '../components/EditTravelModal/EditTravelModal';
 import Map from '../components/Map/Map';
+import getPlacesData from '../components/api/travelAdvisor';
 
 
 const TravelDetailsPage = () => {
@@ -22,18 +24,50 @@ const TravelDetailsPage = () => {
 
   const [isEditTravelClicked, setIsEditTravelClicked] = useState(false)
   
+  const [userHotelLocation, setUserHotelLocation] = useState({})
+ 
+  const [places, setPlaces ] = useState([]);
 
-  const travelObj = {
-    destination: "Las Vegas",
-    hotel: "Caesar's Palace",
-    arrival: "Saturday, September 16th",
-    departure: "Wednesday, September 20th",
-    location: {
-      lat: 36.11702,
-      lng: -115.17471
+  const [coordinates, setCoordinates]=useState({});
+  const [bounds, setBounds] = useState(null);
+
+
+  
+  
+
+  //write function to set user's hotel as location
+  useEffect(()=> {
+    setCoordinates({lat:36.11702, lng: -115.17471 });
+    setUserHotelLocation({lat:36.11702, lng: -115.17471 });
+  }, [])
+  
+  
+  useEffect(()=> {
+    if (bounds) {
+      getPlacesData(bounds)
+      .then((data)=> {
+        console.log(data);
+        setPlaces(data);
+      })
+      .catch(err => console.log(err.message));
     }
-  }
+    
+  }, [bounds, coordinates])
+  
 
+
+  // const travelObj = {
+  //   destination: "Las Vegas",
+  //   hotel: "Caesar's Palace",
+  //   arrival: "Saturday, September 16th",
+  //   departure: "Wednesday, September 20th",
+  //   location: {
+  //     lat: 36.11702,
+  //     lng: -115.17471
+  //   }
+  // }
+
+  
 
 
   return (
@@ -90,7 +124,7 @@ const TravelDetailsPage = () => {
         </section> */}
         
       </div>
-      <Map location={travelObj.location}/>
+      <Map userHotelLocation={userHotelLocation} coordinates={coordinates} setBounds={setBounds} setCoordinates={setCoordinates}/>
     </div>
 
     {isAddScheduleClicked &&
@@ -98,7 +132,7 @@ const TravelDetailsPage = () => {
     }
     
     {isEditTravelClicked &&
-      <EditTravelModal setIsEditTravelClicked={setIsEditTravelClicked} travel={travelObj}/>
+      <EditTravelModal setIsEditTravelClicked={setIsEditTravelClicked} />
     }
 
 
