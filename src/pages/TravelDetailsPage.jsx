@@ -140,7 +140,7 @@ const TravelDetailsPage = () => {
           <MapCard setIsAddScheduleClicked={setIsAddScheduleClicked} placeDetailsObj={placeDetailsObj} placeType={placeType} theme={theme}/>
       
         </div> 
-        <Map placeDetailsObj={placeDetailsObj} setPlaceDetailsObj={setPlaceDetailsObj} calculateDistance={calculateDistance} placeType={placeType} places={places} userHotelLocation={userHotelLocation} coordinates={coordinates} setBounds={setBounds} setCoordinates={setCoordinates} />
+        <Map theme={theme} placeDetailsObj={placeDetailsObj} setPlaceDetailsObj={setPlaceDetailsObj} calculateDistance={calculateDistance} placeType={placeType} places={places} userHotelLocation={userHotelLocation} coordinates={coordinates} setBounds={setBounds} setCoordinates={setCoordinates} />
       </div>
 
       {isAddScheduleClicked &&

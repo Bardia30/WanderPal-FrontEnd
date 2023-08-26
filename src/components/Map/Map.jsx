@@ -2,17 +2,37 @@ import { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import './Map.scss';
 import '../MapCard/MapCard.scss';
-import restoLogo from '../../assets/restaurant.svg';
+import restoSvg from '../../assets/restaurant.svg';
+import restoSvgDark from '../../assets/restaurant-dark.svg';
 import hotelLogo from '../../assets/hotel.svg';
-import attractionLogo from '../../assets/attraction.svg';
+import attractionSvg from '../../assets/attraction.svg';
+import attractionSvgDark from '../../assets/attraction-dark.svg';
+import darkMapStyles from './darkMapStyle';
+import lightMapStyles from './lightMapStyle';
 
-const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType, places, setCoordinates, setBounds, coordinates, userHotelLocation }) => {
+
+
+const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType, places, setCoordinates, setBounds, coordinates, userHotelLocation, theme }) => {
 
     const MapContainerStyle = {
         width: '100%',
         height: '100%'
     };
 
+    const [restoLogo, setRestoLogo] = useState(restoSvg);
+    const [attractionLogo, setAttractionLogo] = useState(attractionSvg);
+
+
+
+    useEffect(()=> {
+        if(theme === 'dark') {
+            setRestoLogo(restoSvgDark);
+            setAttractionLogo(attractionSvgDark);    
+        } else {
+            setRestoLogo(restoSvg);
+            setAttractionLogo(attractionSvg);
+        }
+    }, [theme])
 
     const defaultCenter = { lat: 36.11702, lng: -115.17471 };
 
@@ -41,13 +61,7 @@ const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType
         trySetBounds();
     }, [mapInstance, placeType]);
 
-    const customMapStyle = [
-        {
-            featureType: 'poi',
-            elementType: 'labels',
-            stylers: [{ visibility: 'off' }]
-        }
-    ];
+    
 
     return (
         <div className='map'>
@@ -58,7 +72,7 @@ const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType
                     mapContainerStyle={MapContainerStyle}
                     zoom={14}
                     center={coordinates || defaultCenter}
-                    options={{ styles: customMapStyle }}
+                    options={{ styles: theme === "dark" ? darkMapStyles : lightMapStyles }}
                     onLoad={(map) => {
                         console.log('Map Loaded');
                         setMapInstance(map);
