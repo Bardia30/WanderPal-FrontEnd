@@ -93,17 +93,17 @@ const TravelDetailsPage = () => {
   }, [bounds, placeType]);
 
 
-
-  // const travelObj = {
-  //   destination: "Las Vegas",
-  //   hotel: "Caesar's Palace",
-  //   arrival: "Saturday, September 16th",
-  //   departure: "Wednesday, September 20th",
-  //   location: {
-  //     lat: 36.11702,
-  //     lng: -115.17471
-  //   }
-  // }
+  //for test, gotta be received from backend
+  const travelObj = {
+    destination: "Las Vegas",
+    hotel: "Caesar's Palace",
+    arrival: "Saturday, September 16th",
+    departure: "Wednesday, September 20th",
+    location: {
+      lat: 36.11702,
+      lng: -115.17471
+    }
+  }
 
 
 
@@ -148,7 +148,7 @@ const TravelDetailsPage = () => {
       }
 
       {isEditTravelClicked &&
-        <EditTravelModal setIsEditTravelClicked={setIsEditTravelClicked} />
+        <EditTravelModal travel={travelObj} setIsEditTravelClicked={setIsEditTravelClicked} />
       }
 
 
