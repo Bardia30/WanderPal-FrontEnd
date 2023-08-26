@@ -2,25 +2,49 @@ import axios from 'axios';
 
 
 
-const URL = "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary";
+const URLRestaurant = "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary";
 
-const getPlacesData = (bounds) => {
-    return axios.get(URL, {
-        params: {
-            bl_latitude: bounds.sw.lat,
-            tr_latitude: bounds.ne.lat,
-            bl_longitude: bounds.sw.lng,
-            tr_longitude: bounds.ne.lng,
-        },
-        headers: {
-            'X-RapidAPI-Key': '06ee4c1ea4msh5c190e53082e6eep16149cjsn15082cf550d2',
-            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-        }
-    })
-        .then(res => {
-            return res.data.data;
-        })
-        .catch((err) => console.log(err.message));
+const URLAttraction = "https://travel-advisor.p.rapidapi.com/attractions/list-in-boundary";
+
+const getRestaurantsData = async (sw, ne) => {
+    try {
+        const {data: {data}} = await axios.get(URLRestaurant, {
+            params: {
+              bl_latitude: sw.lat,
+              tr_latitude: ne.lat,
+              bl_longitude: sw.lng,
+              tr_longitude: ne.lng,
+            },
+            headers: {
+              'X-RapidAPI-Key': 'c80fd687f0mshcf2ee2641ee63cfp1ee440jsn8047ff636e22',
+              'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+            }
+          });
+        return data;
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-export default getPlacesData;
+const getAttractionsData = async (sw, ne) => {
+  try {
+      const {data: {data}} = await axios.get(URLAttraction, {
+          params: {
+            bl_latitude: sw.lat,
+            tr_latitude: ne.lat,
+            bl_longitude: sw.lng,
+            tr_longitude: ne.lng,
+          },
+          headers: {
+            'X-RapidAPI-Key': 'c80fd687f0mshcf2ee2641ee63cfp1ee440jsn8047ff636e22',
+            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+          }
+        });
+      return data;
+  } catch (err) {
+      console.log(err)
+  }
+}
+
+
+export {getRestaurantsData, getAttractionsData};

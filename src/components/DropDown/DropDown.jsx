@@ -4,11 +4,11 @@ import DropDownDark from '../../assets/drop-down-dark.png';
 import './DropDown.scss';
 import ThemeContext from '../context/theme-context';
 
-const DropDown = () => {
+const DropDown = ({ setPlaceType, setPlaceDetailsObj }) => {
     const { theme } = useContext(ThemeContext);
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedTitle, setSelectedTitle] = useState("Select an Attraction...")
+    const [selectedTitle, setSelectedTitle] = useState("restaurants")
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -20,6 +20,8 @@ const DropDown = () => {
         const selection = e.target.firstChild.data;
         setSelectedTitle(selection);
         //some other logic is left
+        setPlaceType(selection.toLowerCase());
+        setPlaceDetailsObj({});
     }
     
     return (

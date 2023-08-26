@@ -2,3 +2,31 @@
 @use '../../styles/variables' as*;
 
 
+.map-card {
+    width: 6.25rem;
+    height: 9.375rem;
+    background: $primary-background;
+    padding:1rem;
+    border-radius: 4px;
+    position: relative;
+    
+    &__img {
+        width: 4.8125rem;
+        height:3.75rem;
+        border-radius:4px;
+    }
+    &__status{
+        font-size:0.875rem;
+        font-weight:600;
+        &--open{
+            color:$open;
+        }
+        &--closed {
+            color:$delete-button-color;
+        }
+    }
+    z-index:100;
+        position:relative;
+       
+
+}
