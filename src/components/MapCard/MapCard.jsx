@@ -26,7 +26,7 @@ const MapCard = ({ setIsAddScheduleClicked, placeDetailsObj, placeType, theme })
               <section className='travel__texts-section'>
                 <h3 className={`travel__restaurant-name travel__restaurant-name--${theme}`}>{placeDetailsObj.name}</h3>
                 <p className={`travel__restaurant-details travel__restaurant-details--${theme}`}><span className='travel__restaurant-details--bold'>Category: </span>{placeDetailsObj.category}</p>
-                <p className={`travel__restaurant-details travel__restaurant-details--${theme}`}><span className='travel__restaurant-details--bold'>Distance From Hotel: </span>{`${Math.round(placeDetailsObj.distance)} m`}</p>
+                <p className={`travel__restaurant-details travel__restaurant-details--${theme}`}><span className='travel__restaurant-details--bold'>Distance From Hotel: </span>{placeDetailsObj.distance}</p>
                 <p className={`travel__restaurant-details travel__restaurant-details--${theme}`}><span className='travel__restaurant-details--bold'>Status: </span>{placeDetailsObj.isClosed ? "CLOSED": "OPEN"}</p>
                 <p className={`travel__restaurant-details travel__restaurant-details--${theme}`}><span className='travel__restaurant-details--bold'>Price Range: </span>{placeDetailsObj.price}</p>
                 <a className={`travel__restaurant-website-link travel__restaurant-website-link--${theme}`} href={placeDetailsObj.website}>Visit Website</a>

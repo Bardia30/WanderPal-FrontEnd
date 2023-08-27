@@ -41,22 +41,28 @@ const TravelDetailsPage = () => {
 
 
   const calculateDistance = (lat, lng) => {
-    //calculate latitudes and longitudes in radians,
+    //haversine formula
     const hotelLat = (userHotelLocation.lat)* Math.PI/180;
     const hotelLng = (userHotelLocation.lng) * Math.PI/180;
 
     const destinationLat = lat * Math.PI/180;
     const destinationLng = lng * Math.PI/180;
 
-    const deltaLat = (hotelLat - destinationLat) * Math.PI/180;
-    const deltaLng = (hotelLng - destinationLng) * Math.PI/180;
+    const deltaLat = hotelLat - destinationLat;
+    const deltaLng = hotelLng - destinationLng;
 
     const a = (Math.sin(deltaLat/2) **2) + Math.cos(hotelLat) * Math.cos(destinationLat) * (Math.sin(deltaLng/2) **2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-    const d = (6371*(10**3))*c;
+    let d = (6371*(10**3))*c;
 
-    return d;
+
+    if (d >= 1000) {
+      d = Math.round(d/1000);
+      return `${d} km`
+    } else if (d < 1000) {
+      return `${Math.round(d)} m`
+    }
 
   }
 
