@@ -1,0 +1,47 @@
+@use '../styles/mixins' as *;
+@use '../styles/variables' as *;
+
+
+
+.sched {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    &__title {
+        margin:0;
+        @include font($size: 3rem, $weight: 600, $color: $primary-text);
+        &--dark {
+            color:$primary-background;
+        }
+    }
+    &__controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.75rem;
+        margin-bottom: 3.125rem;
+    }
+    &__dropdowns {
+        display: flex;
+        column-gap: 1.5rem;
+    }
+    &__cta {
+        height: 3.125rem;
+    }
+
+
+
+    &__table {
+        width: 74rem;
+        height: 46.75rem;
+        border-radius: 16px;
+        
+        &--dark {
+            border:1px solid $primary-background;
+        }
+        &--light {
+            box-shadow: $shadow;
+        }
+    }
+
+    
+}
