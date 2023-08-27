@@ -10,7 +10,6 @@ import ThemeContext from '../context/theme-context';
 const Sidebar = () => {
   const { theme, changeTheme } = useContext(ThemeContext);
 
-
   const [sidebarClass, setSidebarClass] = useState("sidebar");
 
 

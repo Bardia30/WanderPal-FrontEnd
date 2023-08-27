@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
+
 import './DestinationsPage.scss';
 import TravelCard from '../components/TravelCard/TravelCard';
 import AddNewTravel from '../components/AddNewTravel/AddNewTravel';
@@ -15,9 +16,11 @@ const DestinationsPage = () => {
   const { theme } = useContext(ThemeContext);
 
   //test to see how we can delete http requests. I am using dummy id for now. 
-  useEffect(()=> {
-    console.log(travelId);
-  }, [travelId]);
+  // useEffect(()=> {
+  //   console.log(travelId);
+  // }, [travelId]);
+
+  
 
   return (
     <React.Fragment>

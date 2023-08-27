@@ -3,11 +3,6 @@ import Button from '../components/Button/Button';
 import DropDown from '../components/DropDown/DropDown';
 import backButton from '../assets/back-logo.png';
 import backButtonDark from '../assets/back-logo-dark.png';
-import mapLogo from '../assets/map.png';
-import mapLogoDark from '../assets/map-dark.png';
-import likeLogoDark from '../assets/like-dark.png';
-import likeLogo from '../assets/like.png';
-import restoPic from '../assets/temp-rest-pic.png';
 import './TravelDetailsPage.scss';
 import ThemeContext from '../components/context/theme-context';
 import AddNewScheduleModal from '../components/AddNewScheduleModal/AddNewScheduleModal';
@@ -31,8 +26,6 @@ const TravelDetailsPage = () => {
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState(null);
 
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const [placeType, setPlaceType] = useState("restaurants");
 

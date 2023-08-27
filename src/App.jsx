@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import DestinationsPage from './pages/DestinationsPage';
@@ -18,7 +19,7 @@ function App() {
 
   const [theme, setTheme] = useState("light");
 
-
+  const {uid} = useParams();
 
   const changeTheme = ()=> {
     if (theme === "light") {
@@ -30,18 +31,20 @@ function App() {
     }
   }
 
-  //probably might need to delete line47 and line 49
-  
+  //probably might need to delete line47 and line49
+
+
+  const [isSidebar, setIsSidebar] = useState(true);
 
   return (
     <ThemeContext.Provider value={{theme, changeTheme}}>
     <BrowserRouter>
-    <Sidebar />
+    {isSidebar ? <Sidebar /> : null}
      <main>
       <Routes>
-        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/login' element={<LoginPage setIsSidebar={setIsSidebar}/>}></Route>
         <Route path='/signup' element={<SignUpPage />}></Route>
-        <Route path='/:uid/destinations' element={<DestinationsPage />}/>
+        <Route path='/:uid/destinations' element={<DestinationsPage uid={uid}/>}/>
         <Route path='/:uid/favorites' element={<FavoritesPage />}/>
         <Route path='/:uid/travelDetails/:travelId' element={<TravelDetailsPage />}/>
         <Route path='/:uid/travelDetails/:travelId/delete' element={<TravelDetailsDeletePage />}/> 
