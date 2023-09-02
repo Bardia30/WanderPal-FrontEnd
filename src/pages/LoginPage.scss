@@ -8,8 +8,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4rem;
-    width:100%;
+    padding: 4rem 0;
+    width:100vw;
     &__title{
         @include font($size: 5.5rem, $weight: 600, $color: $primary-text);
         margin:0;
@@ -113,5 +113,17 @@
     }
     &__buttons{
         margin-top: 8rem;
+    }
+    &__password-match {
+        color:red;
+    }
+
+    &__user-pic {
+        width: 15rem;
+        height: 12.5rem;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
     }
 }
