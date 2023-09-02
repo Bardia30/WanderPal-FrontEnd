@@ -8,10 +8,11 @@ import SchedulesPage from './pages/SchedulesPage';
 import ScheduleDetailPage from './pages/ScheduleDetailPage';
 import FavoritesPage from './pages/FavoritesPage';
 import TravelDetailsDeletePage from './pages/TravelDetailsDeletePage';
-import Sidebar from './components/Sidebar/Sidebar'; 
+import Sidebar from './components/Sidebar/Sidebar';
 import './App.scss';
 import ThemeContext from './components/context/theme-context';
-import { useState } from 'react';
+import { useCallback, useState, React } from 'react';
+import { AuthContext } from './components/authContext/authContext';
 
 
 
@@ -19,9 +20,9 @@ function App() {
 
   const [theme, setTheme] = useState("light");
 
-  const {uid} = useParams();
+  const { uid } = useParams();
 
-  const changeTheme = ()=> {
+  const changeTheme = () => {
     if (theme === "light") {
       setTheme("dark");
       document.body.style.background = "#001C30"
@@ -31,30 +32,53 @@ function App() {
     }
   }
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  }, [])
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  })
+
+
+  
   //probably might need to delete line47 and line49
 
 
   const [isSidebar, setIsSidebar] = useState(true);
 
   return (
-    <ThemeContext.Provider value={{theme, changeTheme}}>
-    <BrowserRouter>
-    {isSidebar ? <Sidebar /> : null}
-     <main>
-      <Routes>
-        <Route path='/login' element={<LoginPage setIsSidebar={setIsSidebar}/>}></Route>
-        <Route path='/signup' element={<SignUpPage />}></Route>
-        <Route path='/:uid/destinations' element={<DestinationsPage uid={uid}/>}/>
-        <Route path='/:uid/favorites' element={<FavoritesPage />}/>
-        <Route path='/:uid/travelDetails/:travelId' element={<TravelDetailsPage />}/>
-        <Route path='/:uid/travelDetails/:travelId/delete' element={<TravelDetailsDeletePage />}/> 
-        <Route path='/:uid/travelDetails/:travelId/schedules/:day' element={<SchedulesPage />}/>
-        <Route path='/:uid/travelDetails/:travelId/schedules/:day/:scheduleId' element={<ScheduleDetailPage />}/>
-        <Route path='*' element={<SignUpPage />}/>
-      </Routes>
-      </main>
-    </BrowserRouter>
-    </ThemeContext.Provider>
+    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
+      <ThemeContext.Provider value={{ theme, changeTheme }}>
+        <BrowserRouter>
+          {isSidebar ? <Sidebar /> : null}
+          <main>
+            <Routes>
+            {isLoggedIn ? (
+              <>
+              <Route path="/:uid/destinations" element={<DestinationsPage uid={uid} />} />
+              <Route path="/:uid/favorites" element={<FavoritesPage />} />
+              <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage />} />
+              <Route path="/:uid/travelDetails/:travelId/delete" element={<TravelDetailsDeletePage />} />
+              <Route path="/:uid/travelDetails/:travelId/schedules/:day" element={<SchedulesPage />} />
+              <Route path="/:uid/travelDetails/:travelId/schedules/:day/:scheduleId" element={<ScheduleDetailPage />} />
+              <Route path="*" element={<DestinationsPage uid={uid} />} />
+              </>
+            ): (
+              <>
+              <Route path="/login" element={<LoginPage setIsSidebar={setIsSidebar} />} />
+              <Route path="/signup" element={<SignUpPage setIsSidebar={setIsSidebar}/>} />
+              <Route path="/" element={<LoginPage setIsSidebar={setIsSidebar} />} />
+              </>
+            )}
+            </Routes>
+          </main>
+        </BrowserRouter>
+      </ThemeContext.Provider>
+    </AuthContext.Provider>
   );
 }
 

@@ -29,6 +29,10 @@
         width: 31.25rem;
         height: 25rem;
         justify-content: space-between;
+        &--signup {
+            width:56.25rem;
+            height: 37.5rem;
+        }
     }
     &__form{
         display: flex;
@@ -60,5 +64,54 @@
     }
     &__signup {
         @include font($size: 1.25rem, $weight:400, $color:$primary-text);
+    }
+    &__signup-form {
+        display: flex;
+        flex-direction: column;
+        
+        width:100%;
+    }
+    &__upper-section {
+        display: flex;
+       
+    }
+    &__left-section {
+        display: flex;
+        flex-direction :column;
+        
+    }
+    &__right-section {
+        margin-left: 3rem;
+        display: flex;
+        flex-direction:column;
+    }
+    &__user-pic-placeholder{
+        width: 15rem;
+        height: 12.5rem;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+    &__upload-instructions {
+        margin:0;
+    }
+    &__upload-buttons{
+        align-self: flex-end;
+        display: flex;
+        column-gap:2rem;
+        margin-left:7rem;
+    }
+    &__cancel-cta{
+        background:none;
+        color:$primary-text;
+        font-weight:400;
+
+    }
+    &__buttons{
+        margin-top: 8rem;
     }
 }

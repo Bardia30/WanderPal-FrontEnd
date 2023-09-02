@@ -1,14 +1,24 @@
 import InputField from '../components/InputField/InputField';
 import Button from '../components/Button/Button';
 import './LoginPage.scss';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../components/authContext/authContext';
+
 
 const LoginPage = ({ setIsSidebar }) => {
-  
+
+  const auth = useContext(AuthContext);
+
   useEffect(()=> {
     setIsSidebar(false);
   },[])
   
+
+  const handleAuth = (e) => {
+    e.preventDefault();
+    auth.login();
+  }
   
   return (
     <section className='auth'>
@@ -28,11 +38,11 @@ const LoginPage = ({ setIsSidebar }) => {
           />
         </form>
         <div className='auth__buttons'>
-          <p className='auth__signup'>No Account Yet? <a className='auth__link' href="">Sign Up</a></p>
+          <p className='auth__signup'>No Account Yet? <Link className='auth__link' to='/signup'>Sign Up</Link></p>
           <Button 
             text="LOGIN"
             buttonClass="auth__cta"
-            onClick={()=>{}}
+            onClick={handleAuth}
           />
         </div>
       </div>
