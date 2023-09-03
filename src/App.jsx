@@ -58,7 +58,7 @@ function App() {
     sessionStorage.removeItem('isLoggedIn');
   }, [])
 
-
+  const [userPic, setUserPic] = useState("");
   
   //probably might need to delete line47 and line49
 
@@ -69,12 +69,12 @@ function App() {
     <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
       <ThemeContext.Provider value={{ theme, changeTheme }}>
         <BrowserRouter>
-          {isSidebar ? <Sidebar /> : null}
+          {isSidebar ? <Sidebar userPic={userPic}/> : null}
           <main>
             <Routes>
             {isLoggedIn ? (
               <>
-              <Route path="/:uid/destinations" element={<DestinationsPage uid={uid} />} />
+              <Route path="/:uid/destinations" element={<DestinationsPage setUserPic={setUserPic} uid={uid} />} />
               <Route path="/:uid/favorites" element={<FavoritesPage />} />
               <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage />} />
               <Route path="/:uid/travelDetails/:travelId/delete" element={<TravelDetailsDeletePage />} />

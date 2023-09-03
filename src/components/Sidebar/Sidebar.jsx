@@ -1,23 +1,27 @@
 import React, { useState, useContext, useEffect } from 'react';
-import userPic from '../../assets/user-pic.png';
+import axios from 'axios';
+
 import homeLogo from '../../assets/home_svgrepo.com.png';
 import favoritesLogo from '../../assets/favorites_svgrepo.com.png';
 import scheduleLogo from '../../assets/schedule_svgrepo.com.png';
 import './Sidebar.scss';
 import ThemeContext from '../context/theme-context';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 
-const Sidebar = () => {
+const Sidebar = ({userPic}) => {
   const { theme, changeTheme } = useContext(ThemeContext);
 
   const [sidebarClass, setSidebarClass] = useState("sidebar");
 
   const location = useLocation();
 
+
   useEffect(() => {
     setSidebarClass("sidebar-dark");
   }, [theme])
+
+
 
 
   const [heightStyle, setHeightStyle] = useState(null);
@@ -34,7 +38,10 @@ const Sidebar = () => {
   return (
     <header className={`header header--${theme} header--${heightStyle}`}>
       <nav className={`${sidebarClass}`}>
-        <img className={`${sidebarClass}__user-pic`} src={userPic} alt="user" />
+      <div className='sidebar__pic-border'>
+      <img className={`${sidebarClass}__user-pic`} src={userPic} alt="user" />
+      </div>
+        
         <section className={`${sidebarClass}__menu-item`}>
           <img className={`${sidebarClass}__logo`} src={homeLogo} alt="home" />
           <p className={`${sidebarClass}__menu-text`}>home</p>
