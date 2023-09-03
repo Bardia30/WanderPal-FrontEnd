@@ -27,7 +27,7 @@
         box-shadow: $shadow;
         padding:3.875rem 3.125rem;       
         width: 31.25rem;
-        height: 25rem;
+        // height: 25rem;
         justify-content: space-between;
         &--signup {
             width:56.25rem;
@@ -111,9 +111,9 @@
         font-weight:400;
 
     }
-    &__buttons{
-        margin-top: 8rem;
-    }
+    // &__buttons{
+    //     margin-top: 8rem;
+    // }
     &__password-match {
         color:red;
     }

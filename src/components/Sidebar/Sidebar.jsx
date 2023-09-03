@@ -5,6 +5,7 @@ import favoritesLogo from '../../assets/favorites_svgrepo.com.png';
 import scheduleLogo from '../../assets/schedule_svgrepo.com.png';
 import './Sidebar.scss';
 import ThemeContext from '../context/theme-context';
+import { useLocation } from 'react-router-dom';
 
 
 const Sidebar = () => {
@@ -12,13 +13,26 @@ const Sidebar = () => {
 
   const [sidebarClass, setSidebarClass] = useState("sidebar");
 
+  const location = useLocation();
 
   useEffect(() => {
     setSidebarClass("sidebar-dark");
   }, [theme])
 
+
+  const [heightStyle, setHeightStyle] = useState(null);
+
+  useEffect(()=> {
+    if (location.pathname.includes('destinations') || location.pathname.includes('schedules')) {
+      setHeightStyle('height');
+    } else {
+      setHeightStyle(null);
+    }
+  }, [location])
+  
+
   return (
-    <header className={`header header--${theme}`}>
+    <header className={`header header--${theme} header--${heightStyle}`}>
       <nav className={`${sidebarClass}`}>
         <img className={`${sidebarClass}__user-pic`} src={userPic} alt="user" />
         <section className={`${sidebarClass}__menu-item`}>

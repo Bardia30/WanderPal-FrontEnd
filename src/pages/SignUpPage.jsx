@@ -2,11 +2,13 @@ import InputField from '../components/InputField/InputField';
 import Button from '../components/Button/Button';
 import './LoginPage.scss';
 import { useContext, useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../components/authContext/authContext';
 import axios from 'axios';
 
-const SignUpPage = ({ setIsSidebar }) => {
+const SignUpPage = ({ setIsSidebar, login }) => {
+  
+  const navigate = useNavigate();
 
   const filePickerRef = useRef();
 
@@ -93,10 +95,17 @@ const SignUpPage = ({ setIsSidebar }) => {
       return alert("Passwords do not match")
     } 
 
+    
+
+
     axios.post('http://localhost:8080/user/signup', formData)
       .then(res => {
         console.log(res)
         auth.login(res.data.id);
+        const userId = res.data.userId;
+        login();
+        setIsSidebar(true);
+        navigate(`/${userId}/destinations`);
       })
       .catch(err => {
         console.log(err); 

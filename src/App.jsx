@@ -32,16 +32,31 @@ function App() {
     }
   }
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+  // const login = useCallback(() => {
+  //   setIsLoggedIn(true);
+  // }, [])
+
+  // const logout = useCallback(() => {
+  //   setIsLoggedIn(false);
+  // })
+  const initialLoginState = !!sessionStorage.getItem('isLoggedIn');
+
+  const [isLoggedIn, setIsLoggedIn] = useState(initialLoginState);
 
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
-  }, [])
+    sessionStorage.setItem('isLoggedIn', 'true');
+  }, []);
+
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
-  })
+    sessionStorage.removeItem('isLoggedIn');
+  }, [])
 
 
   
@@ -69,9 +84,9 @@ function App() {
               </>
             ): (
               <>
-              <Route path="/login" element={<LoginPage setIsSidebar={setIsSidebar} />} />
-              <Route path="/signup" element={<SignUpPage setIsSidebar={setIsSidebar}/>} />
-              <Route path="/" element={<LoginPage setIsSidebar={setIsSidebar} />} />
+              <Route path="/login" element={<LoginPage setIsSidebar={setIsSidebar} login={login}/>} />
+              <Route path="/signup" element={<SignUpPage setIsSidebar={setIsSidebar} login={login}/>} />
+              <Route path="/" element={<LoginPage setIsSidebar={setIsSidebar} login={login}/>} />
               </>
             )}
             </Routes>
