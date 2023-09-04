@@ -1,19 +1,21 @@
-import React, {useContext} from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TravelCard.scss';
 import Button from '../Button/Button';
 import deleteLogo from '../../assets/delete-logo.png';
-import vegasPic from '../../assets/vegas.png';
 import ThemeContext from '../context/theme-context';
 import deleteLogoDark from '../../assets/delete-logo-dark.png';
 import { timestampToDateStr } from '../util/dateConverter';
 
 
-const TravelCard = ({ handleTravelId, setIsDeleteClicked, destinationObj }) => {
+const TravelCard = ({ uid, handleTravelId, setIsDeleteClicked, destinationObj }) => {
   
   const {id, destination, arrival_date, departure_date, image } = destinationObj;
 
   const { theme } = useContext(ThemeContext);
  
+  const navigate = useNavigate();
+
   const arrivalDate = timestampToDateStr(arrival_date);
   const departureDate = timestampToDateStr(departure_date);
 
@@ -23,6 +25,12 @@ const TravelCard = ({ handleTravelId, setIsDeleteClicked, destinationObj }) => {
     handleTravelId(id);
   }
   
+
+  const handleDetailsClick = () => {
+    navigate(`/${uid}/travelDetails/${id}`);
+  }
+
+
   return (
     <div className={`card card--${theme}`}>
         <div className='card__img-box'>
@@ -33,7 +41,7 @@ const TravelCard = ({ handleTravelId, setIsDeleteClicked, destinationObj }) => {
             <p className={`card__date card__date--${theme}`}>{`${arrivalDate} - ${departureDate}`}</p>
             <div className='card__buttons-section'>
                 <img onClick={HandleOpenDeleteModal} className='card__delete-logo' src={theme === "light" ? deleteLogo : deleteLogoDark} alt="delete" />
-                <Button text="view details" buttonClass={`cta cta--${theme} card__cta`}/>
+                <Button onClick={handleDetailsClick} text="view details" buttonClass={`cta cta--${theme} card__cta`}/>
             </div>
         </section>
     </div>

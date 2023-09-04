@@ -22,8 +22,14 @@ const DeleteTravelModal = ({ setIsDeleteClicked, travelId }) => {
     //cant test this until I have schedules
     //does not work right now. 
     axios.delete(`http://localhost:8080/destinations/${uid}/${travelId}`)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+      .then(res => {
+        console.log(res.data);
+        alert("Trip has been succesfully deleted");
+        closeDeleteModalHandler();
+      })
+      .catch(err => {
+        console.log("Error:", err.response ? err.response.data : err.message);
+      });
   }
   
     return (

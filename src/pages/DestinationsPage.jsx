@@ -52,19 +52,11 @@ const DestinationsPage = ({ setUserPic }) => {
       <div className='destinations__cards'>
       {userDestinations.length === 0 ? <h3>You Have No Travel Plans On Your Dashboard!</h3> : 
         userDestinations.map(destination => (
-          <TravelCard key={destination._id} destinationObj = {destination} handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
+          <TravelCard uid={uid} key={destination._id} destinationObj = {destination} handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
         ))
       }
-        {/* <TravelCard id="dummyId" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
-        <TravelCard id="dummyId2" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
-        <TravelCard id="dummyId3" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/>
-        <TravelCard id="dummyId4" handleTravelId={setTravelId} setIsDeleteClicked={setIsDeleteClicked}/> */}
-        
       </div>
-      
         <AddNewTravel setAddNewModalClicked={setAddNewModalClicked}/>
-      
-      
     </section>
     {
       addNewModalClicked && <AddNewTravelModal uid={uid} setAddNewModalClicked={setAddNewModalClicked}/>
