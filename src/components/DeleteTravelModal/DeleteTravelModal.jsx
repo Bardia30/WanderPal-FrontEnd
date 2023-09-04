@@ -1,17 +1,29 @@
-import React, {useContext} from 'react';
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import closeLogo from '../../assets/delete.png';
 import './DeleteTravelModal.scss';
 import Button from '../Button/Button';
 import closeDark from '../../assets/delete-dark.png';
 import ThemeContext from '../context/theme-context';
+import axios from 'axios';
 
 
-const DeleteTravelModal = ({ setIsDeleteClicked }) => {
+const DeleteTravelModal = ({ setIsDeleteClicked, travelId }) => {
   const {theme} = useContext(ThemeContext);
   
-  
+  const {uid} = useParams();
+
+
   const closeDeleteModalHandler = () => {
     setIsDeleteClicked(false);
+  }
+
+  const handleDeleteButton = () => {
+    //cant test this until I have schedules
+    //does not work right now. 
+    axios.delete(`http://localhost:8080/destinations/${uid}/${travelId}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
   }
   
     return (
@@ -23,10 +35,12 @@ const DeleteTravelModal = ({ setIsDeleteClicked }) => {
             <Button 
                     buttonClass={`delete__cancel-cta delete__cancel-cta--${theme}`}
                     text="cancel"
+                    onClick={closeDeleteModalHandler}
                 />
                 <Button 
                     buttonClass="delete__delete-cta"
                     text="delete"
+                    onClick={handleDeleteButton}
                 />
             </div>
         </section>

@@ -43,7 +43,7 @@ const DestinationsPage = ({ setUserPic }) => {
         setUserDestinations(res.data.destinations);
       })
       .catch(err => console.log(err.message));
-  },[])
+  },[userDestinations])
 
   return (
     <React.Fragment>
@@ -67,7 +67,7 @@ const DestinationsPage = ({ setUserPic }) => {
       
     </section>
     {
-      addNewModalClicked && <AddNewTravelModal setAddNewModalClicked={setAddNewModalClicked}/>
+      addNewModalClicked && <AddNewTravelModal uid={uid} setAddNewModalClicked={setAddNewModalClicked}/>
     }
     {
       isDeleteClicked && <DeleteTravelModal travelId={travelId} setIsDeleteClicked={setIsDeleteClicked}/>
