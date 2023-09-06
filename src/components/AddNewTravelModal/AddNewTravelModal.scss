@@ -51,6 +51,9 @@
         justify-content: space-evenly;
         width:100%;
         margin-top: 4.8rem;
+        &--edit {
+            column-gap: 10rem;
+        }
     }
     &__add-cta{
         letter-spacing: 3.52px;

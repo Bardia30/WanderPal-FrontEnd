@@ -122,6 +122,8 @@ const TravelDetailsPage = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [isTravelUpdated, setIsTravelUpdated] = useState(false);
+
   useEffect(()=> {
     // console.log(`uid: ${uid}`);
     // console.log(`travelId: ${travelId}`);
@@ -137,7 +139,7 @@ const TravelDetailsPage = () => {
         console.log(err.message);
         setIsLoading(false);
       });
-  }, [])
+  }, [isTravelUpdated])
 
 
   return (
@@ -180,7 +182,7 @@ const TravelDetailsPage = () => {
       }
 
       {isEditTravelClicked &&
-        <EditTravelModal travel={travelObj} setIsEditTravelClicked={setIsEditTravelClicked} />
+        <EditTravelModal setIsTravelUpdated={setIsTravelUpdated} uid={uid} travel={travelObj} setIsEditTravelClicked={setIsEditTravelClicked} />
       }
 
 
