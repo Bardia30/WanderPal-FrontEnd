@@ -20,28 +20,26 @@ const SignUpPage = ({ setIsSidebar, login }) => {
   }, [])
 
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    auth.signup();
-  }
+  // const handleSignup = (e) => {
+  //   e.preventDefault();
+  //   auth.signup();
+  // }
 
   const [isUploaded, setIsUploaded] = useState(false);
 
 
-  const handleCancelButton = () => {
-
-  }
+  
 
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState(false)
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
 
   const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
+    // setConfirmPassword(e.target.value);
     if (password !== e.target.value) {
       setPasswordConfirmMessage(true);
     } else {
@@ -55,29 +53,18 @@ const SignUpPage = ({ setIsSidebar, login }) => {
   const handleSignUpSubmit = (e) => {
     e.preventDefault();
     const userName = e.target.userName.value;
-    // const firstName = userName[0];
-    // const lastName = userName[1];
+    
     const password = e.target.userPassword.value;
     const email = e.target.userEmail.value;
     const passwordConfirm = e.target.userPasswordConfirm.value;
 
-    // if (userName.length < 1 || !firstName || !lastName) {
-    //   return alert("please enter both first and last name");
-    // }
+    
 
     if (!userName || !password || !email || !passwordConfirm) {
       return alert("all fields must be completed");
     }
 
-    // const newUserObj = {
-    //   email: email,
-    //   name: {
-    //     first: firstName,
-    //     last: lastName
-    //   },
-    //   password: password,
-    //   image: previewUrl
-    // }
+    
 
     const formData = new FormData();
     formData.append('email', email);
@@ -150,6 +137,18 @@ const SignUpPage = ({ setIsSidebar, login }) => {
       return;
     }  else {
       setIsUploaded(false);
+    }
+  }
+
+  const handleCancelButton = (e) => {
+    e.preventDefault();
+    setFile(null);               
+    setIsUploaded(false);       
+    setPreviewUrl(null);        
+
+    
+    if (filePickerRef.current) {
+      filePickerRef.current.value = "";
     }
   }
 

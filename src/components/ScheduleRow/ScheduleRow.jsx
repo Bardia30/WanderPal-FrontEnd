@@ -7,7 +7,7 @@ import './ScheduleRow.scss';
 
 const ScheduleRow = ({data, theme}) => {
   
-    const {time, activity_name, activity_type, duration, location, website} = data;
+    const {time, activity_name, activity_type, duration, website} = data;
   //have to have id for each data row, and also got to figure out the location part. 
     return (
     <section className={`sched__details sched__details--${theme}`}>
@@ -18,8 +18,8 @@ const ScheduleRow = ({data, theme}) => {
           <a className='sched__detail-link' href="#">View On Map</a>
           <a className='sched__detail-link' href={website}>Visit</a>
           <div className='sched__actions'>
-            <img src={theme === "light" ? deleteLogo : deleteLogoDark} alt="delete" />
-            <img src={theme === "light" ? editLogo : editLogoDark} alt="edit" />
+            <img src={theme === "light" ? deleteLogo : deleteLogoDark} alt="trash-button" />
+            <img src={theme === "light" ? editLogo : editLogoDark} alt="update-button" />
           </div>
           
         </section>

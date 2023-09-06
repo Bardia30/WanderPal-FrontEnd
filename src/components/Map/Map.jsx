@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useJsApiLoader } from '@react-google-maps/api';
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import './Map.scss';
 import '../MapCard/MapCard.scss';
 import restoSvg from '../../assets/restaurant.svg';

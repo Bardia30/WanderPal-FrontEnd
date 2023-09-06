@@ -518,3 +518,5 @@ const MOCK_DATA = [
         ]
     }
 ]
+
+export default MOCK_DATA;

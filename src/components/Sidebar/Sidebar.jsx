@@ -1,12 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-
 import homeLogo from '../../assets/home_svgrepo.com.png';
 import favoritesLogo from '../../assets/favorites_svgrepo.com.png';
 import scheduleLogo from '../../assets/schedule_svgrepo.com.png';
 import './Sidebar.scss';
 import ThemeContext from '../context/theme-context';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 const Sidebar = ({userPic}) => {
