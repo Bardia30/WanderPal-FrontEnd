@@ -18,15 +18,20 @@ const DestinationsPage = ({ setUserPic }) => {
 
   const { uid } = useParams();
   
+  
 
   const [userDestinations, setUserDestinations] = useState([]);
 
   const [userName, setUserName] = useState("");
 
+  
+
   //test to see how we can delete http requests. I am using dummy id for now. 
   // useEffect(()=> {
   //   console.log(travelId);
   // }, [travelId]);
+
+ 
 
   useEffect(()=> {
     axios.get(`http://localhost:8080/user/${uid}`)
@@ -44,6 +49,8 @@ const DestinationsPage = ({ setUserPic }) => {
       })
       .catch(err => console.log(err.message));
   },[userDestinations])
+
+  
 
   return (
     <React.Fragment>

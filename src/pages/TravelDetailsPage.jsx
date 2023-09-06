@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Button from '../components/Button/Button';
 import DropDown from '../components/DropDown/DropDown';
 import backButton from '../assets/back-logo.png';
@@ -10,9 +10,17 @@ import EditTravelModal from '../components/EditTravelModal/EditTravelModal';
 import Map from '../components/Map/Map';
 import {getRestaurantsData, getAttractionsData} from '../components/api/travelAdvisor';
 import MapCard from '../components/MapCard/MapCard';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { timestampToDateStr } from '../components/util/dateConverter';
 
 
 const TravelDetailsPage = () => {
+
+  const navigate = useNavigate();
+
+  const { uid, travelId } = useParams();
+
   const { theme } = useContext(ThemeContext);
 
   const [isAddScheduleClicked, setIsAddScheduleClicked] = useState(false)
@@ -62,10 +70,10 @@ const TravelDetailsPage = () => {
 
 
   //write function to set user's hotel as location
-  useEffect(() => {
-    setCoordinates({ lat: 36.11702, lng: -115.17471 });
-    setUserHotelLocation({ lat: 36.11702, lng: -115.17471 });
-  }, [])
+  // useEffect(() => {
+  //   setCoordinates({ lat: 36.11702, lng: -115.17471 });
+  //   setUserHotelLocation({ lat: 36.11702, lng: -115.17471 });
+  // }, [])
   
 
   useEffect(() => {
@@ -93,27 +101,52 @@ const TravelDetailsPage = () => {
 
 
   //for test, gotta be received from backend
-  const travelObj = {
-    destination: "Las Vegas",
-    hotel: "Caesar's Palace",
-    arrival: "Saturday, September 16th",
-    departure: "Wednesday, September 20th",
-    location: {
-      lat: 36.11702,
-      lng: -115.17471
-    }
+  // const travelObj = {
+  //   destination: "Las Vegas",
+  //   hotel: "Caesar's Palace",
+  //   arrival: "Saturday, September 16th",
+  //   departure: "Wednesday, September 20th",
+  //   location: {
+  //     lat: 36.11702,
+  //     lng: -115.17471
+  //   }
+  // }
+  const { state } = useLocation();
+  const key = state?.key;
+
+  const handleBackButton = () => {
+    navigate(`/${uid}/destinations`);
   }
 
+  const[travelObj, setTravelObj] = useState({});
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(()=> {
+    // console.log(`uid: ${uid}`);
+    // console.log(`travelId: ${travelId}`);
+    axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`)
+      .then(res => {
+        console.log(res.data);
+        setTravelObj(res.data);
+        setCoordinates(res.data.hotel.location);
+        setUserHotelLocation(res.data.hotel.location);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.log(err.message);
+        setIsLoading(false);
+      });
+  }, [])
 
 
   return (
-    <>
+    <React.Fragment key={key}>
       <div className="travel">
         <section className='travel__upper-section'>
           <section className='travel__upper-left'>
-            <img className='travel__back-logo' src={theme === "light" ? backButton : backButtonDark} alt="back-button" />
-            <h1 className={`travel__title travel__title--${theme}`}>Las Vegas Trip</h1>
+            <img onClick={handleBackButton} className='travel__back-logo' src={theme === "light" ? backButton : backButtonDark} alt="back-button" />
+            <h1 className={`travel__title travel__title--${theme}`}>{travelObj?.destination} Trip</h1>
           </section>
           <Button
             text="travel schdeule"
@@ -125,9 +158,9 @@ const TravelDetailsPage = () => {
         
           <div className='travel__mid-left'>
             <section className={`travel__details-card travel__details-card--${theme}`}>
-              <h1 className={`travel__details-title travel__details-title--${theme}`}><span className='travel__details-title--bold'>hotel: </span>Caesar's Palace</h1>
-              <p className={`travel__dates travel__dates--${theme}`}><span className='travel__dates--bold'>Arrival: </span>Saturday, September 16th</p>
-              <p className={`travel__dates travel__dates--${theme}`}><span className='travel__dates--bold'>Departure: </span>Wednesday, September 20th</p>
+              <h1 className={`travel__details-title travel__details-title--${theme}`}><span className='travel__details-title--bold'>hotel: </span>{travelObj?.hotel?.name}</h1>
+              <p className={`travel__dates travel__dates--${theme}`}><span className='travel__dates--bold'>Arrival: </span>{timestampToDateStr(travelObj?.arrival_date)}</p>
+              <p className={`travel__dates travel__dates--${theme}`}><span className='travel__dates--bold'>Departure: </span>{timestampToDateStr(travelObj?.departure_date)}</p>
               <Button
                 text="edit travel"
                 buttonClass="travel__edit-cta"
@@ -139,7 +172,7 @@ const TravelDetailsPage = () => {
           <MapCard setIsAddScheduleClicked={setIsAddScheduleClicked} placeDetailsObj={placeDetailsObj} placeType={placeType} theme={theme}/>
       
         </div> 
-        <Map theme={theme} placeDetailsObj={placeDetailsObj} setPlaceDetailsObj={setPlaceDetailsObj} calculateDistance={calculateDistance} placeType={placeType} places={places} userHotelLocation={userHotelLocation} coordinates={coordinates} setBounds={setBounds} setCoordinates={setCoordinates} />
+        {!isLoading && <Map theme={theme} placeDetailsObj={placeDetailsObj} setPlaceDetailsObj={setPlaceDetailsObj} calculateDistance={calculateDistance} placeType={placeType} places={places} userHotelLocation={userHotelLocation} coordinates={coordinates} setBounds={setBounds} setCoordinates={setCoordinates} />}
       </div>
 
       {isAddScheduleClicked &&
@@ -152,7 +185,7 @@ const TravelDetailsPage = () => {
 
 
 
-    </>
+    </React.Fragment>
   )
 }
 

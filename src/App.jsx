@@ -76,7 +76,7 @@ function App() {
               <>
               <Route path="/:uid/destinations" element={<DestinationsPage setUserPic={setUserPic} uid={uid} />} />
               <Route path="/:uid/favorites" element={<FavoritesPage />} />
-              <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage />} />
+              <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage/>} />
               <Route path="/:uid/travelDetails/:travelId/delete" element={<TravelDetailsDeletePage />} />
               <Route path="/:uid/travelDetails/:travelId/schedules/:day" element={<SchedulesPage />} />
               <Route path="/:uid/travelDetails/:travelId/schedules/:day/:scheduleId" element={<ScheduleDetailPage />} />

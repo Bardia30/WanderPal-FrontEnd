@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useJsApiLoader } from '@react-google-maps/api';
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import './Map.scss';
 import '../MapCard/MapCard.scss';
@@ -38,6 +40,8 @@ const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType
 
     const [mapInstance, setMapInstance] = useState(null);
 
+    
+
     const trySetBounds = (retryCount = 0) => {
         if (!mapInstance) return;
 
@@ -57,17 +61,22 @@ const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType
         }
     };
 
+
+
     useEffect(() => {
         trySetBounds();
     }, [mapInstance, placeType]);
 
-    
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: 'AIzaSyCUWDlkP61gtUg4lnwS85K5gkpaj3ys7Ak',
+        libraries: ['geometry', 'drawing'],
+      });
+
 
     return (
         <div className='map'>
-
-
-            <LoadScript googleMapsApiKey='AIzaSyCUWDlkP61gtUg4lnwS85K5gkpaj3ys7Ak'>
+            {isLoaded && 
                 <GoogleMap
                     mapContainerStyle={MapContainerStyle}
                     zoom={14}
@@ -156,7 +165,7 @@ const Map = ({ placeDetailsObj, calculateDistance, setPlaceDetailsObj, placeType
                     }
 
                 </GoogleMap>
-            </LoadScript>
+            }
         </div>
 
     )
