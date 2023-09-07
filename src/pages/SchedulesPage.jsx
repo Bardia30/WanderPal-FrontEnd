@@ -1,6 +1,8 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import Button from '../components/Button/Button';
-import MOCK_DATA from '../components/DropDownVacation/mockData';
+// import MOCK_DATA from '../components/DropDownVacation/mockData';
 import DropDownVacation from '../components/DropDownVacation/DropDownVacation';
 import DropDownSchedule from '../components/DropDownSchedule/DropDownSchedule';
 import './SchedulesPage.scss';
@@ -11,87 +13,59 @@ import ThemeContext from '../components/context/theme-context';
 
 const SchedulesPage = () => {
 
+  const { uid } = useParams();
+
+  const [userName, setUserName ] = useState("");
+
+  const [userDestinations, setUserDestinations] = useState([]);
+
+
+  const [selectedDestinationId, setSelectedDestinationId] = useState("");
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/user/${uid}`)  
+      .then((res) => {
+        setUserName(res.data.name);
+      })
+      .catch(err => {
+        console.log(err.message);
+      })
+  }, [])
+
+  useEffect(()=> {
+    axios.get(`http://localhost:8080/destinations/${uid}`)
+      .then(res => {
+        setUserDestinations(res.data.destinations);
+      })
+      .catch(err => console.log(err.message));
+  },[])
+
+
+
   const {theme} = useContext(ThemeContext);
 
-  const mockSchedData = [
-    {
-      day: 1,
-      time: "5:00 PM",
-      activity_name: "Beach",
-      activity_type: "Swimming",
-      duration: 120,
-      location: {
-        lat: 44.232434,
-        lng: -15.342342
-      },
-      website: "www.CancunBeach.com"
-    },
-    {
-      day: 1,
-      time: "5:00 PM",
-      activity_name: "Beach",
-      activity_type: "Swimming",
-      duration: 120,
-      location: {
-        lat: 44.232434,
-        lng: -15.342342
-      },
-      website: "www.CancunBeach.com"
-    },
-    {
-      day: 1,
-      time: "5:00 PM",
-      activity_name: "Beach",
-      activity_type: "Swimming",
-      duration: 120,
-      location: {
-        lat: 44.232434,
-        lng: -15.342342
-      },
-      website: "www.CancunBeach.com"
-    },
-    {
-      day: 1,
-      time: "5:00 PM",
-      activity_name: "Beach",
-      activity_type: "Swimming",
-      duration: 120,
-      location: {
-        lat: 44.232434,
-        lng: -15.342342
-      },
-      website: "www.CancunBeach.com"
-    },
-    {
-      day: 1,
-      time: "5:00 PM",
-      activity_name: "Beach",
-      activity_type: "Swimming",
-      duration: 120,
-      location: {
-        lat: 44.232434,
-        lng: -15.342342
-      },
-      website: "www.CancunBeach.com"
-    },
-  ]
+  const [schedules, setSchedules] = useState([]);
 
 
 
   return (
     <section className='sched'>
       <h1 className={`sched__title sched__title--${theme}`}>
-        Bardia's Travel Schedule
+        {userName}'s Travel Schedule
       </h1>
       <div className='sched__controls'>
         <div className='sched__dropdowns'>
           <DropDownVacation
-            data={MOCK_DATA}
+            data={userDestinations}
             dropClass="sched__drop-vacation"
+            setSelectedDestinationId={setSelectedDestinationId}
           />
           <DropDownSchedule
-            data={MOCK_DATA}
+            selectedDestinationId={selectedDestinationId}
+            uid={uid}
             dropClass="sched__drop-schedule"
+            setSchedules={setSchedules}
           />
         </div>
         <Button
@@ -106,16 +80,16 @@ const SchedulesPage = () => {
           <h3 className={`sched__table-title sched__table-title--${theme}`}>name</h3>
           <h3 className={`sched__table-title sched__table-title--${theme}`}>activity type</h3>
           <h3 className={`sched__table-title sched__table-title--${theme}`}>duration</h3>
-          <h3 className={`sched__table-title sched__table-title--${theme}`}>location</h3>
+          {/* <h3 className={`sched__table-title sched__table-title--${theme}`}>location</h3> */}
           <h3 className={`sched__table-title sched__table-title--${theme}`}>website</h3>
           <h3 className={`sched__table-title sched__table-title--${theme}`}>action</h3>
         </section>
-        {mockSchedData.map((data) =>
+        {schedules.length > 0 ? schedules.map((data) =>
         (<ScheduleRow
           theme={theme}
           data={data}
         />)
-        )}
+        ) : <h3>Select Vacation and day to see schedule</h3>}
       </div>
     </section>
   )

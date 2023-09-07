@@ -68,6 +68,13 @@ function timestampToTimeStr(timestamp) {
     return `${hours}:${minutes}`;
 }
 
+function daysBetweenTimestamps(arrivalTimestamp, departureTimestamp) {
+    const MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000; // 24 hours, 60 minutes, 60 seconds, 1000 milliseconds
+    const difference = departureTimestamp - arrivalTimestamp;
+
+    return Math.ceil(difference / MILLISECONDS_IN_A_DAY);
+}
 
 
-export {dateToTimeStamp, timestampToDateStr, calculateDayRelativeToArrival, timeStrToTimestamp, timestampToTimeStr}
+
+export {dateToTimeStamp, timestampToDateStr, calculateDayRelativeToArrival, timeStrToTimestamp, timestampToTimeStr, daysBetweenTimestamps}

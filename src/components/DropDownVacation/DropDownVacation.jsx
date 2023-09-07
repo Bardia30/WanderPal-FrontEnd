@@ -6,7 +6,7 @@ import './DropDownVacation.scss';
 
 //has to dynamically set the vacation's list for a user, 
 //and days of each vacation from the given data
-const DropDownVacation = ({data, dropClass}) => {
+const DropDownVacation = ({ data, dropClass, setSelectedDestinationId }) => {
 
     const { theme } = useContext(ThemeContext);
 
@@ -17,17 +17,17 @@ const DropDownVacation = ({data, dropClass}) => {
         setIsOpen(!isOpen);
     }
 
-    const handleSelection = (e) => {
-        setIsOpen(false);
-        //rest of logic
-        const selection = e.target.firstChild.data;
-        setSelectedTitle(selection);
-        //some other logic is left
-        
-    }
-    
-    
-    
+    // const handleSelection = (e) => {
+    //     setIsOpen(false);
+    //     //rest of logic
+    //     const selection = e.target.firstChild.data;
+    //     setSelectedTitle(selection);
+    //     //some other logic is left
+    //     setSelectedDestinationId(destination._id);
+    // }
+
+
+
     return (
         <div className={dropClass}>
             <section onClick={handleToggle} className={isOpen ? `dropdown dropdown-vacation dropdown--dropped dropdown--${theme}` : `dropdown dropdown-vacation  dropdown--${theme}`}>
@@ -36,9 +36,16 @@ const DropDownVacation = ({data, dropClass}) => {
             </section>
             {isOpen &&
                 <ul className={`dropdown__list dropdown-vacation__list dropdown__list--${theme}`}>
-                    <li onClick={handleSelection} className={`dropdown__item dropdown__item--${theme}`}>Las Vegas</li>
-                    <li onClick={handleSelection} className={`dropdown__item dropdown__item--${theme}`}>Cancun</li>
-                    <li onClick={handleSelection} className={`dropdown__item dropdown__item--${theme}`}>New York</li>
+                    {data.map(destination => (
+                        <li onClick={(e) => {
+                            setIsOpen(false);
+                            //rest of logic
+                            const selection = e.target.firstChild.data;
+                            setSelectedTitle(selection);
+                            //some other logic is left
+                            setSelectedDestinationId(destination._id);
+                        }} className={`dropdown__item dropdown__item--${theme}`}>{destination.destination}</li>
+                    ))}
                 </ul>
             }
         </div>

@@ -7,7 +7,7 @@
     &__details {
         display: flex;
         justify-content: space-between;
-        padding: 1.25rem;
+        padding: 1.25rem 2rem;
         border-top:1px solid $primary-text;
         align-items: center;
         &--dark {
@@ -16,9 +16,14 @@
     }
     &__detail-item {
         margin:0;
+        
         @include font($size: 1.25rem, $weight:400, $color:$primary-text);
         &--dark {
             color: $primary-background;
+        }
+
+        &--name {
+            width:10rem;
         }
     }
 
