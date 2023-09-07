@@ -32,16 +32,7 @@ function App() {
     }
   }
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
-  // const login = useCallback(() => {
-  //   setIsLoggedIn(true);
-  // }, [])
-
-  // const logout = useCallback(() => {
-  //   setIsLoggedIn(false);
-  // })
+  
   const initialLoginState = !!sessionStorage.getItem('isLoggedIn');
 
   const [isLoggedIn, setIsLoggedIn] = useState(initialLoginState);
@@ -78,7 +69,7 @@ function App() {
               <Route path="/:uid/favorites" element={<FavoritesPage />} />
               <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage/>} />
               <Route path="/:uid/travelDetails/:travelId/delete" element={<TravelDetailsDeletePage />} />
-              <Route path="/:uid/travelDetails/:travelId/schedules/:day" element={<SchedulesPage />} />
+              <Route path="/:uid/travelDetails/:travelId/schedules" element={<SchedulesPage />} />
               <Route path="/:uid/travelDetails/:travelId/schedules/:day/:scheduleId" element={<ScheduleDetailPage />} />
               <Route path="*" element={<DestinationsPage uid={uid} />} />
               </>

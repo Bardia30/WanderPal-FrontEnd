@@ -67,13 +67,11 @@ const TravelDetailsPage = () => {
 
   }
 
+  const handleTravelScheduleButton = (e) => {
+    e.preventDefault();
+    navigate('schedules');
+  }
 
-
-  //write function to set user's hotel as location
-  // useEffect(() => {
-  //   setCoordinates({ lat: 36.11702, lng: -115.17471 });
-  //   setUserHotelLocation({ lat: 36.11702, lng: -115.17471 });
-  // }, [])
   
 
   useEffect(() => {
@@ -100,17 +98,7 @@ const TravelDetailsPage = () => {
   }, [bounds, placeType]);
 
 
-  //for test, gotta be received from backend
-  // const travelObj = {
-  //   destination: "Las Vegas",
-  //   hotel: "Caesar's Palace",
-  //   arrival: "Saturday, September 16th",
-  //   departure: "Wednesday, September 20th",
-  //   location: {
-  //     lat: 36.11702,
-  //     lng: -115.17471
-  //   }
-  // }
+
   const { state } = useLocation();
   const key = state?.key;
 
@@ -153,6 +141,7 @@ const TravelDetailsPage = () => {
           <Button
             text="travel schdeule"
             buttonClass="travel__schedule-cta"
+            onClick={handleTravelScheduleButton}
           />
         </section>
         
@@ -178,7 +167,7 @@ const TravelDetailsPage = () => {
       </div>
 
       {isAddScheduleClicked &&
-        <AddNewScheduleModal setIsAddScheduleClicked={setIsAddScheduleClicked} />
+        <AddNewScheduleModal placeType={placeType} placeDetailsObj={placeDetailsObj} uid={uid} travelId={travelId} travelObj={travelObj} setIsAddScheduleClicked={setIsAddScheduleClicked} />
       }
 
       {isEditTravelClicked &&
