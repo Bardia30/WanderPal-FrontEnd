@@ -4,20 +4,35 @@
 
 .destinations {
     padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include desktop{
+        align-items: flex-start;
+    }
     &__title {
-        @include font($size: 3rem, $weight:600);
+        @include font($size: 2rem, $weight:600);
+        text-align: center;
         margin:0;
         padding-bottom: 3.75rem;
         &--dark {
             color:$primary-background;
         }
+        @include desktop{
+            @include font($size: 3rem, $weight:600);
+            text-align: left;
+        }
     }
     &__cards {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         column-gap: 2rem;
         row-gap: 2rem;
         margin-bottom: 3rem;
+        @include desktop{
+            justify-content: flex-start;
+        }
     }
 }
 

@@ -17,13 +17,17 @@
     }
     &__modal{
         background:$primary-background;
-        width: 56.25rem;
-        height: 23.6875rem;
+        width: 90%;
+        height: 20rem;
         border-radius: 32px;
         margin-top: 8.75rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include desktop {
+            width: 56.25rem;
+            height: 23.6875rem;
+        }
         &--dark {
             background: $primary-text;
             border:1px solid $primary-background;
@@ -36,13 +40,16 @@
         cursor: pointer;
     }
     &__title {
-        @include font($size: 3rem, $color: $secondary-text, $weight:600);
+        @include font($size: 1.5rem, $color: $secondary-text, $weight:600);
         margin:0;
         margin-bottom: 2.25rem;
         width: 75%;
         text-align:center;
         &--dark {
             color: $primary-background;
+        }
+        @include desktop {
+            @include font($size: 3rem, $color: $secondary-text, $weight:600);
         }
     }
 

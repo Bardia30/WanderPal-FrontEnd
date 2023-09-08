@@ -4,18 +4,33 @@
 
 
 .travel {
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     &__upper-section{
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+        flex-direction: column;
+        @include desktop {
+            flex-direction: row;
+            align-items: center;
+        }
     }
+    @include desktop{
+        padding: 2rem 3rem;
+    }
+
     &__upper-left {
         display: flex;
         align-items: center;
-
+        width:100%;
+        justify-content: space-between;
+        margin-bottom:2rem;
+        @include desktop {
+            width:auto;
+            justify-content: flex-start;
+        }
     }
     &__back-logo{
         width:3rem;
@@ -25,9 +40,12 @@
     }
     &__title{
         margin: 0;
-        @include font($size: 3rem, $weight:600 , $color:$primary-text);
+        @include font($size:2rem, $weight:600 , $color:$primary-text);
         &--dark {
             color:$primary-background;
+        }
+        @include desktop {
+            @include font($size: 3rem, $weight:600 , $color:$primary-text);
         }
     }
     
@@ -36,14 +54,26 @@
         display: flex;
         justify-content: space-between;
         margin-top: 2.5rem;
+        flex-direction:column;
+        row-gap: 2rem;
+        @include desktop {
+            flex-direction: row;
+            row-gap: 0;
+        }
     }
     &__mid-left {
         margin-right: 3.875rem;
+        display:flex;
+        flex-direction:column;
+        @include desktop {
+            flex-direction: column;
+            
+        }
     }
     &__details-card {
         display: flex;
         flex-direction:column;
-        width: 25.125rem;
+        width: 100%;
         height: 14.75rem;
         padding: 2rem 1.5rem;
         border-radius: 32px;
@@ -52,6 +82,10 @@
         &--dark {
             border: 1px solid $primary-background;
             box-shadow: none;
+        }
+        @include desktop {
+            width: 25.125rem;
+            height: 14.75rem;
         }
     }
     &__details-title {
@@ -82,8 +116,8 @@
 
     &__mid-right {
         display: flex;
-        width: 43.75rem;
-        height: 23.75rem;
+        width: 100%;
+        height: 26rem;
         border-radius: 32px;
         box-shadow: $shadow;
         &--dark {
@@ -94,6 +128,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        @include desktop {
+            flex-direction: row;
+            width: 43.75rem;
+        height: 23.75rem;
         }
     }
     &__pic-div{

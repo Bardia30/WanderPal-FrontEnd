@@ -12,18 +12,26 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    @include desktop {
+
+    }
 }
 
 
 .add-new {
     border-radius: 32px;
-    padding:2.25rem 5.625rem 11rem 2.125rem;
+    padding:2rem;
     margin-top:8.5rem;
     background: $primary-background;
-    width: 48.5rem;
-    height: 33.625rem;
+    width: 60%;
+    height: 35rem;
     display: flex;
     flex-direction: column;
+    @include desktop{
+        width: 48.5rem;
+    height: 33.625rem;
+    padding:2.25rem 5.625rem 11rem 2.125rem;
+    }
     &--dark {
         background: $primary-text;
         border:1px solid $primary-background;
@@ -49,10 +57,16 @@
     &__buttons {
         display: flex;
         justify-content: space-evenly;
+        flex-direction: column-reverse;
         width:100%;
-        margin-top: 4.8rem;
+        row-gap: 1rem;
         &--edit {
             column-gap: 10rem;
+        }
+        @include desktop{
+            flex-direction: row;
+            margin-top: 4.8rem;
+            row-gap: 0;
         }
     }
     &__add-cta{
@@ -71,5 +85,9 @@
     &__form {
         display: flex;
         flex-direction: column;
+        row-gap: 2rem;
+        @include desktop {
+            row-gap: 0;
+        }
     }
 }

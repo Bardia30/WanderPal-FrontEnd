@@ -149,3 +149,25 @@
         }
     }
 }
+
+.header-mobile {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    background: $secondary-text;
+    height: 5rem;
+    padding: 1rem;
+    padding-bottom: 1.5rem;
+    z-index: 1000;
+    &__pic-frame{
+        width:4rem;
+        height:4rem;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    &__pic {
+        width:100%;
+        height:100%;
+    }
+}
