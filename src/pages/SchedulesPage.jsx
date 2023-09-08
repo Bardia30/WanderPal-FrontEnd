@@ -8,6 +8,7 @@ import DropDownSchedule from '../components/DropDownSchedule/DropDownSchedule';
 import './SchedulesPage.scss';
 import ScheduleRow from '../components/ScheduleRow/ScheduleRow';
 import ThemeContext from '../components/context/theme-context';
+import { timestampToDateStr } from '../components/util/dateConverter';
 
 
 
@@ -17,16 +18,17 @@ const SchedulesPage = () => {
 
   const navigate = useNavigate();
 
-  const [userName, setUserName ] = useState("");
+  const [userName, setUserName] = useState("");
 
   const [userDestination, setUserDestination] = useState([]);
 
+  const [travelObj, setTravelObj] = useState(null);
 
   // const [selectedDestinationId, setSelectedDestinationId] = useState("");
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/user/${uid}`)  
+    axios.get(`http://localhost:8080/user/${uid}`)
       .then((res) => {
         setUserName(res.data.name);
       })
@@ -35,20 +37,23 @@ const SchedulesPage = () => {
       })
   }, [])
 
-  useEffect(()=> {
+  useEffect(() => {
     axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`)
       .then(res => {
         setUserDestination(res.data.destination);
+        setTravelObj(res.data);
+        
       })
       .catch(err => console.log(err.message));
-  },[])
+  }, [])
 
 
 
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const [schedules, setSchedules] = useState([]);
 
+  const [isUpdated, setIsUpdated] = useState(false)
 
 
   return (
@@ -68,12 +73,18 @@ const SchedulesPage = () => {
             uid={uid}
             dropClass="sched__drop-schedule"
             setSchedules={setSchedules}
+            isUpdated={isUpdated}
           />
+          <div className='sched__arr-dep'>
+          <h3 className='sched__arr-dep-text'>Arrival: {timestampToDateStr(travelObj.arrival_date)}</h3>
+          <h3 className='sched__arr-dep-text'>Departure: {timestampToDateStr(travelObj.departure_date)}</h3>
+          </div>
+          
         </div>
         <Button
           text="travel details"
           buttonClass="sched__cta"
-          onClick={(e) => { 
+          onClick={(e) => {
             e.preventDefault();
             navigate(`/${uid}/travelDetails/${travelId}`)
           }}
@@ -91,8 +102,10 @@ const SchedulesPage = () => {
         </section>
         {schedules.length > 0 ? schedules.map((data) =>
         (<ScheduleRow
+          travelObj={travelObj}
           theme={theme}
           data={data}
+          setIsUpdated={setIsUpdated}
         />)
         ) : <h3>Select Vacation and day to see schedule</h3>}
       </div>

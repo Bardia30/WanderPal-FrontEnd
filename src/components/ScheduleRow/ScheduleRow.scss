@@ -79,4 +79,17 @@
         text-transform: uppercase;
         padding-left:2.25rem;
     }
+    &__edit {
+        cursor: pointer;
+    }
+    &__delete {
+        cursor: pointer;
+    }
+    &__arr-dep {
+        display:flex;
+        column-gap: 4rem;
+    }
+    &__arr-dep-text {
+        @include font($size:1.25rem, $weight:400, $color:$secondary-text);
+    }
 }

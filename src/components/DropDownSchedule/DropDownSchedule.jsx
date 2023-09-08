@@ -8,7 +8,7 @@ import axios from 'axios';
 
 //has to dynamically set the vacation's list for a user, 
 //and days of each vacation from the given data
-const DropDownSchedule = ({ uid, selectedDestinationId, dropClass, setSchedules }) => {
+const DropDownSchedule = ({ isUpdated, uid, selectedDestinationId, dropClass, setSchedules }) => {
 
     const { theme } = useContext(ThemeContext);
 
@@ -33,7 +33,7 @@ const DropDownSchedule = ({ uid, selectedDestinationId, dropClass, setSchedules 
             })
             .catch(err => console.log(err.message));
         }
-    }, [selectedDestinationId]);
+    }, [selectedDestinationId, isUpdated]);
 
 
 
@@ -61,11 +61,7 @@ const DropDownSchedule = ({ uid, selectedDestinationId, dropClass, setSchedules 
                     console.log(err.message);
                 })
         }
-        // return () => {
-        //     setSelectedTitle(1);
-        //     setSchedules([]); // Resetting schedules state
-        // };
-    }, [selectedDestinationId, selectedTitle])
+    }, [selectedDestinationId, selectedTitle, isUpdated])
     
     
     
