@@ -13,28 +13,28 @@ const LoginPage = ({ setIsSidebar, login }) => {
 
   const auth = useContext(AuthContext);
 
-  useEffect(()=> {
+  useEffect(() => {
     setIsSidebar(false);
-  },[])
-  
+  }, [])
+
 
 
 
 
   const handleAuth = (e) => {
     e.preventDefault();
-  
+
     const password = e.target.userPassword.value;
     const email = e.target.userEmail.value;
-    
 
-    if (!password || !email ) {
+
+    if (!password || !email) {
       return alert("all fields must be completed");
     }
 
 
     const userLoginObj = {
-      email: email, 
+      email: email,
       password: password
     }
 
@@ -42,6 +42,10 @@ const LoginPage = ({ setIsSidebar, login }) => {
 
     axios.post('http://localhost:8080/user/login', userLoginObj)
       .then(res => {
+        const token = res.data.token;
+        if (token) {
+          localStorage.setItem('token', token);
+        }
         auth.login(res.data.userId);
         const userId = res.data.userId;
         login();
@@ -49,42 +53,42 @@ const LoginPage = ({ setIsSidebar, login }) => {
         navigate(`/${userId}/destinations`);
       })
       .catch(err => {
-        console.log(err); 
-        console.log(err.response.data);  
-    });
+        console.log(err);
+        console.log(err.response.data);
+      });
 
-    
+
 
   }
-  
+
   return (
     <section className='auth'>
       <h1 className='auth__title'>Welcome Back to WonderPal</h1>
       <p className='auth__instructions'>Login, and continue your journey</p>
       <div className='auth__form-section'>
-        <form onSubmit={handleAuth} className='auth__form' action="submit">  
-          <InputField 
+        <form onSubmit={handleAuth} className='auth__form' action="submit">
+          <InputField
             type="email"
             inputClass="auth__input"
             placeholder="Email..."
             name="userEmail"
           />
-          <InputField 
+          <InputField
             type="password"
             inputClass="auth__input"
             placeholder="Password..."
             name="userPassword"
           />
           <div className='auth__buttons'>
-          <p className='auth__signup'>No Account Yet? <Link className='auth__link' to='/signup'>Sign Up</Link></p>
-          <Button 
-            text="LOGIN"
-            buttonClass="auth__cta"
-            type="submit"
-          />
-        </div>
+            <p className='auth__signup'>No Account Yet? <Link className='auth__link' to='/signup'>Sign Up</Link></p>
+            <Button
+              text="LOGIN"
+              buttonClass="auth__cta"
+              type="submit"
+            />
+          </div>
         </form>
-        
+
       </div>
     </section>
   )

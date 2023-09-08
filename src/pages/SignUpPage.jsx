@@ -82,12 +82,14 @@ const SignUpPage = ({ setIsSidebar, login }) => {
       return alert("Passwords do not match")
     } 
 
-    
-
 
     axios.post('http://localhost:8080/user/signup', formData)
       .then(res => {
         console.log(res)
+        const token  = res.data.token;
+        if (token) {
+          localStorage.setItem('token', token);
+        }
         auth.login(res.data.id);
         const userId = res.data.userId;
         login();

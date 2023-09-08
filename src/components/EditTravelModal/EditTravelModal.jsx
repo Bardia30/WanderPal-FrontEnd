@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import './EditTravelModal.scss';
 import '../InputField/InputField';
 import InputField from '../InputField/InputField';
 import '../InputField/InputField.scss';
@@ -96,8 +95,14 @@ const EditTravelModal = ({ setIsEditTravelClicked, travel, uid, setIsTravelUpdat
             return alert('You must change both destination and hotel');
         }
 
-        
-        axios.put(`http://localhost:8080/destinations/${uid}/${_id}`, updatedTravelObj)
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            axios.put(`http://localhost:8080/destinations/${uid}/${_id}`, updatedTravelObj, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then(res => {
                 console.log(res.data);
                 alert('Travel was successfully updated');
@@ -105,13 +110,15 @@ const EditTravelModal = ({ setIsEditTravelClicked, travel, uid, setIsTravelUpdat
                 handleCloseModal();
             })
             .catch(err => console.log(err.message));
+        } else {
+            console.error('no token')
+        }
     }
 
     return (
         <div onClick={handleCloseModal} className='add-dest'>
             <section onClick={e => e.stopPropagation()} className={`add-new add-new--${theme}`}>
                 <section className='add-new__top-section'>
-                    {/* <section className='add-new__left-section'> */}
                     <h1 className={`add-new__title add-new__title--${theme}`}>Edit Your New Adventure!</h1>
                     <form onSubmit={handleEditTravel} className='add-new__form' action="submit">
                         <InputField
@@ -159,8 +166,6 @@ const EditTravelModal = ({ setIsEditTravelClicked, travel, uid, setIsTravelUpdat
                         </div>
                     </form>
                 </section>
-
-
             </section>
         </div>
     )

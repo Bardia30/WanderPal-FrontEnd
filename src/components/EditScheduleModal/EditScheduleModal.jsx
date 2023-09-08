@@ -87,9 +87,14 @@ const EditScheduleModal = ({ setIsUpdated, scheduleId, duration, day, time, uid,
     const handleAddNewSchedule = (e) => {
         e.preventDefault();
         
+        const token = localStorage.getItem('token');
 
-
-        axios.put(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleObj.day}/${scheduleId}`, scheduleObj)
+        if (token) {
+            axios.put(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleObj.day}/${scheduleId}`, scheduleObj, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then(res => {
                 console.log(res.data);
                 alert('schedule has been successfully updated');
@@ -99,6 +104,11 @@ const EditScheduleModal = ({ setIsUpdated, scheduleId, duration, day, time, uid,
             .catch(err => {
                 console.log(err.message);
             })
+        } else {
+            console.error('no token')
+        }
+
+        
     }
 
 

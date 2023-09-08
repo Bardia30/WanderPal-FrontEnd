@@ -113,9 +113,13 @@ const TravelDetailsPage = () => {
   const [isTravelUpdated, setIsTravelUpdated] = useState(false);
 
   useEffect(()=> {
-    // console.log(`uid: ${uid}`);
-    // console.log(`travelId: ${travelId}`);
-    axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`)
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then(res => {
         console.log(res.data);
         setTravelObj(res.data);
@@ -127,6 +131,10 @@ const TravelDetailsPage = () => {
         console.log(err.message);
         setIsLoading(false);
       });
+    } else {
+      console.error('no token')
+    }
+    
   }, [isTravelUpdated])
 
 

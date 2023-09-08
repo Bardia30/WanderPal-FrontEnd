@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../components/Button/Button';
-// import MOCK_DATA from '../components/DropDownVacation/mockData';
-import DropDownVacation from '../components/DropDownVacation/DropDownVacation';
 import DropDownSchedule from '../components/DropDownSchedule/DropDownSchedule';
 import './SchedulesPage.scss';
 import ScheduleRow from '../components/ScheduleRow/ScheduleRow';
@@ -24,8 +22,6 @@ const SchedulesPage = () => {
 
   const [travelObj, setTravelObj] = useState({});
 
-  // const [selectedDestinationId, setSelectedDestinationId] = useState("");
-
 
   useEffect(() => {
     axios.get(`http://localhost:8080/user/${uid}`)
@@ -38,13 +34,24 @@ const SchedulesPage = () => {
   }, [])
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`)
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then(res => {
         setUserDestination(res.data.destination);
         setTravelObj(res.data);
         
       })
       .catch(err => console.log(err.message));
+    } else {
+      console.error('no token')
+    }
+    
   }, [])
 
 
@@ -91,7 +98,6 @@ const SchedulesPage = () => {
           <h3 className={`sched__table-title sched__table-title--${theme}`}>name</h3>
           <h3 className={`sched__table-title sched__table-title--${theme}`}>activity type</h3>
           <h3 className={`sched__table-title sched__table-title--${theme}`}>duration</h3>
-          {/* <h3 className={`sched__table-title sched__table-title--${theme}`}>location</h3> */}
           <h3 className={`sched__table-title sched__table-title--${theme} sched__table-title--web`}>website</h3>
           <h3 className={`sched__table-title sched__table-title--${theme}`}>action</h3>
         </section>

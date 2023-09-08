@@ -19,18 +19,26 @@ const DeleteScheduleModal = ({ setIsUpdated, scheduleId, setIsDeleteClicked, tra
   }
 
   const handleDeleteButton = () => {
-    //cant test this until I have schedules
-    //does not work right now. 
-    axios.delete(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleId}`)
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      axios.delete(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        }
+      })
       .then(res => {
         console.log(res.data);
         alert("Schedule has been successfully deleted");
-        setIsUpdated(true);
         closeDeleteModalHandler();
+        setIsUpdated(true);
       })
       .catch(err => {
         console.log("Error:", err.response ? err.response.data : err.message);
       });
+    } else {
+      console.error('no token')
+    }
   }
   
     return (

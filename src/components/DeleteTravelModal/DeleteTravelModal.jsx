@@ -19,9 +19,13 @@ const DeleteTravelModal = ({ setIsDeleteClicked, travelId }) => {
   }
 
   const handleDeleteButton = () => {
-    //cant test this until I have schedules
-    //does not work right now. 
-    axios.delete(`http://localhost:8080/destinations/${uid}/${travelId}`)
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.delete(`http://localhost:8080/destinations/${uid}/${travelId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then(res => {
         console.log(res.data);
         alert("Trip has been succesfully deleted");
@@ -30,6 +34,9 @@ const DeleteTravelModal = ({ setIsDeleteClicked, travelId }) => {
       .catch(err => {
         console.log("Error:", err.response ? err.response.data : err.message);
       });
+    } else {
+      console.error('no token');
+    }
   }
   
     return (

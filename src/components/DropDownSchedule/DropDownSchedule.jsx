@@ -21,8 +21,13 @@ const DropDownSchedule = ({ isUpdated, uid, selectedDestinationId, dropClass, se
 
 
     useEffect(() => {
-        if (selectedDestinationId) {
-            axios.get(`http://localhost:8080/destinations/${uid}/${selectedDestinationId}`)
+        const token = localStorage.getItem('token');
+        if (token && selectedDestinationId) {
+            axios.get(`http://localhost:8080/destinations/${uid}/${selectedDestinationId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then(res => {
                 const days = daysBetweenTimestamps(res.data.arrival_date, res.data.departure_date);
                 const newDaysArray = [];
@@ -52,8 +57,13 @@ const DropDownSchedule = ({ isUpdated, uid, selectedDestinationId, dropClass, se
     }
 
     useEffect(() => {
-        if (selectedDestinationId && selectedTitle) {
-            axios.get(`http://localhost:8080/schedules/${uid}/${selectedDestinationId}`)
+        const token = localStorage.getItem('token');
+        if (token && selectedDestinationId && selectedTitle) {
+            axios.get(`http://localhost:8080/schedules/${uid}/${selectedDestinationId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
                 .then(res => {
                     setSchedules(res.data.filter(schedule => schedule.day === selectedTitle ))
                 })

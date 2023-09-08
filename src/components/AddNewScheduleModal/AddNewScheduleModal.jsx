@@ -26,8 +26,6 @@ const AddNewScheduleModal = ({ uid, travelId, travelObj, placeType, placeDetails
         website: placeDetailsObj.website
     });
 
-    // console.log(placeDetailsObj);
-
 
     const handleDateFocus = () => {
         setIsDateInputFocused(true);
@@ -87,8 +85,14 @@ const AddNewScheduleModal = ({ uid, travelId, travelObj, placeType, placeDetails
             return alert('You must enter all fields');
         }
 
+        const token = localStorage.getItem('token');
 
-        axios.post(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleObj.day}`, scheduleObj)
+        if (token) {
+            axios.post(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleObj.day}`, scheduleObj, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then(res => {
                 console.log(res.data);
                 alert('new schedule has been successfully added');
@@ -97,6 +101,11 @@ const AddNewScheduleModal = ({ uid, travelId, travelObj, placeType, placeDetails
             .catch(err => {
                 console.log(err.message);
             })
+        } else {
+            console.error('no token')
+        }
+
+        
     }
 
 

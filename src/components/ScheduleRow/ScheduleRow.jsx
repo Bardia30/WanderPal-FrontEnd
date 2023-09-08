@@ -10,7 +10,7 @@ import EditScheduleModal from '../EditScheduleModal/EditScheduleModal';
 import DeleteScheduleModal from '../DeleteScheduleModal/DeleteScheduleModal';
 
 const ScheduleRow = ({ setIsUpdated, data, theme, travelObj }) => {
-  // console.log(data);
+  
   const { time, day,  name, activity_type, duration, website } = data;
 
   const [isEditScheduleClicked, setIsEditScheduleClicked] = useState(false);
@@ -29,7 +29,7 @@ const ScheduleRow = ({ setIsUpdated, data, theme, travelObj }) => {
     setIsDeleteClicked(true);
   }
 
-  //have to have id for each data row, and also got to figure out the location part. 
+  
   return (
     <React.Fragment>
       <section className={`sched__details sched__details--${theme}`}>

@@ -24,14 +24,6 @@ const DestinationsPage = ({ setUserPic, setUserId }) => {
 
   const [userName, setUserName] = useState("");
 
-  
-
-  //test to see how we can delete http requests. I am using dummy id for now. 
-  // useEffect(()=> {
-  //   console.log(travelId);
-  // }, [travelId]);
-
- 
 
   useEffect(()=> {
     axios.get(`http://localhost:8080/user/${uid}`)
@@ -44,11 +36,23 @@ const DestinationsPage = ({ setUserPic, setUserId }) => {
   }, [])
 
   useEffect(()=> {
-    axios.get(`http://localhost:8080/destinations/${uid}`)
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      axios.get(`http://localhost:8080/destinations/${uid}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
       .then(res => {
         setUserDestinations(res.data.destinations);
       })
       .catch(err => console.log(err.message));
+    } else {
+      console.error('Token is not available')
+    }
+
+    
   },[userDestinations])
 
   

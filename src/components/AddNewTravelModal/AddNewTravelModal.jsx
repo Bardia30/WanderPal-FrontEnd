@@ -47,9 +47,6 @@ const AddNewTravelModal = ({ setAddNewModalClicked, uid }) => {
 
     const [userPostObj, setUserPostObj] = useState({});
 
-    
-
-
 
     const handleAddNewTravel = (e) => {
         e.preventDefault();
@@ -68,33 +65,26 @@ const AddNewTravelModal = ({ setAddNewModalClicked, uid }) => {
             creatorId: uid,
             hotelName: userHotelName.value
         })
-
-        
-        
-
-
-
     }
 
-    // useEffect(()=> {
-    //     if (userPostObj.destination) {
-    //         axios.post(`http://localhost:8080/destinations/${uid}`, userPostObj)
-    //             .then(res=> {
-    //                 console.log(res)
-    //             })
-    //             .catch(err => console.log(err.message))
-    //     }
-    // },[userPostObj])
+
     useEffect(() => {
-        if (userPostObj.destination ) {
-            axios.post(`http://localhost:8080/destinations/${uid}`, userPostObj)
+        const token = localStorage.getItem('token');
+
+        if (token && userPostObj.destination ) {
+            axios.post(`http://localhost:8080/destinations/${uid}`, userPostObj, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
                 .then(res => {
                     console.log(res.data);
                     alert('new travel added');
                     handleCloseModal();
-                    
                 })
                 .catch(err => console.log(err.message));
+        } else {
+            console.error('no token');
         }
     }, [userPostObj])
 
@@ -103,7 +93,6 @@ const AddNewTravelModal = ({ setAddNewModalClicked, uid }) => {
         <div onClick={handleCloseModal} className='add-dest'>
             <section onClick={e => e.stopPropagation()} className={`add-new add-new--${theme}`}>
                 <section className='add-new__top-section'>
-                    {/* <section className='add-new__left-section'> */}
                         <h1 className={`add-new__title add-new__title--${theme}`}>Add Your New Adventure!</h1>
                         <form onSubmit={handleAddNewTravel} className='add-new__form' action="submit">
                             <InputField
@@ -147,8 +136,6 @@ const AddNewTravelModal = ({ setAddNewModalClicked, uid }) => {
                     />
                 </div>
                         </form>
-                    {/* </section> */}
-
                 </section>
 
                 
