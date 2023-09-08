@@ -9,7 +9,7 @@ import DeleteTravelModal from '../components/DeleteTravelModal/DeleteTravelModal
 import ThemeContext from '../components/context/theme-context';
 
 
-const DestinationsPage = ({ setUserPic }) => {
+const DestinationsPage = ({ setUserPic, setUserId }) => {
   const [addNewModalClicked, setAddNewModalClicked] = useState(false);
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [travelId, setTravelId] = useState("");
@@ -38,6 +38,7 @@ const DestinationsPage = ({ setUserPic }) => {
       .then(res => {
         setUserName(res.data.name);
         setUserPic(`http://localhost:8080/${res.data.image}`);
+        setUserId(uid);
       })
       .catch(err => console.log(err.message))
   }, [])

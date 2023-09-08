@@ -14,7 +14,7 @@ const ScheduleRow = ({data, theme}) => {
           <h4 className={`sched__detail-item sched__detail-item--${theme}`}>{timestampToTimeStr(time)}</h4>
           <h4 className={`sched__detail-item sched__detail-item--${theme} sched__detail-item--name`}>{name}</h4>
           <h4 className={`sched__detail-item sched__detail-item--${theme}`}>{activity_type}</h4>
-          <h4 className={`sched__detail-item sched__detail-item--${theme}`}>{duration}</h4>
+          <h4 className={`sched__detail-item sched__detail-item--${theme}`}>{duration} hour</h4>
           {/* <a className='sched__detail-link' href="#">View On Map</a> */}
           <a className='sched__detail-link' href={website}>Visit</a>
           <div className='sched__actions'>

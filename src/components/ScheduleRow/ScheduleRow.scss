@@ -1,59 +1,82 @@
 @use '../../styles/mixins' as*;
 @use '../../styles/variables' as*;
 
-
-
 .sched {
-    &__details {
+
+    &__details,
+    &__titles {
         display: flex;
         justify-content: space-between;
         padding: 1.25rem 2rem;
-        border-top:1px solid $primary-text;
         align-items: center;
+
+        >*:not(:last-child) {
+            margin-right: 1rem; 
+        }
+    }
+
+    &__details {
+        border-top: 1px solid $primary-text;
+
         &--dark {
             border-top: 1px solid $primary-background;
         }
     }
+
+    &__detail-item,
+    &__table-title {
+        margin: 0;
+
+        &:not(:last-of-type) {
+            flex: 1; 
+        }
+
+        &:last-of-type {
+            flex: 0.8; 
+        }
+    }
+
     &__detail-item {
-        margin:0;
-        
-        @include font($size: 1.25rem, $weight:400, $color:$primary-text);
+        @include font($size: 1.25rem, $weight: 400, $color: $primary-text);
+
         &--dark {
             color: $primary-background;
         }
 
         &--name {
-            width:10rem;
+            flex: 2; 
         }
     }
 
-    
     &__titles {
-        background:$secondary-background;
-        display: flex;
-        justify-content: space-between;
-        padding: 0.75rem 2rem;
+        background: $secondary-background;
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
+
         &--dark {
             background: $primary-text;
         }
     }
+
     &__table-title {
-        margin:0;
-        text-transform:uppercase;
-        @include font($size:1.25rem, $weight:600, $color:$primary-text);
+        text-transform: uppercase;
+        @include font($size: 1.25rem, $weight: 600, $color: $primary-text);
+
         &--dark {
             color: $primary-background;
         }
     }
+
     &__actions {
         display: flex;
         column-gap: 1rem;
+        flex: 0.8; 
     }
+
     &__detail-link {
-        @include font($size:1.25rem, $weight:600, $color:$link-color);
+        @include font($size: 1.25rem, $weight: 600, $color: $link-color);
         text-decoration: none;
         text-transform: uppercase;
+        padding-left:2.25rem;
     }
 }

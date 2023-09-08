@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 import ThemeContext from "../context/theme-context";
 import DropDownLogo from '../../assets/drop-down-logo.png';
 import DropDownDark from '../../assets/drop-down-dark.png';
@@ -10,22 +11,16 @@ const DropDownVacation = ({ data, dropClass, setSelectedDestinationId }) => {
 
     const { theme } = useContext(ThemeContext);
 
+    const navigate = useNavigate();
+    const {uid} = useParams();
+    
+
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedTitle, setSelectedTitle] = useState("Las Vegas")
+    const [selectedTitle, setSelectedTitle] = useState("Select A Vacation")
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     }
-
-    // const handleSelection = (e) => {
-    //     setIsOpen(false);
-    //     //rest of logic
-    //     const selection = e.target.firstChild.data;
-    //     setSelectedTitle(selection);
-    //     //some other logic is left
-    //     setSelectedDestinationId(destination._id);
-    // }
-
 
 
     return (
@@ -44,6 +39,7 @@ const DropDownVacation = ({ data, dropClass, setSelectedDestinationId }) => {
                             setSelectedTitle(selection);
                             //some other logic is left
                             setSelectedDestinationId(destination._id);
+                            navigate(`/${uid}/travelDetails/${destination._id}/schedules`);
                         }} className={`dropdown__item dropdown__item--${theme}`}>{destination.destination}</li>
                     ))}
                 </ul>

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import DestinationsPage from './pages/DestinationsPage';
@@ -20,7 +19,7 @@ function App() {
 
   const [theme, setTheme] = useState("light");
 
-  const { uid } = useParams();
+  
 
   const changeTheme = () => {
     if (theme === "light") {
@@ -32,6 +31,7 @@ function App() {
     }
   }
 
+  
   
   const initialLoginState = !!sessionStorage.getItem('isLoggedIn');
 
@@ -50,7 +50,10 @@ function App() {
   }, [])
 
   const [userPic, setUserPic] = useState("");
+
+  const [userId, setUserId] = useState("");
   
+
   //probably might need to delete line47 and line49
 
 
@@ -60,18 +63,18 @@ function App() {
     <AuthContext.Provider value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}>
       <ThemeContext.Provider value={{ theme, changeTheme }}>
         <BrowserRouter>
-          {isSidebar ? <Sidebar userPic={userPic}/> : null}
+          {isSidebar ? <Sidebar userId={userId} userPic={userPic} /> : null}
           <main>
             <Routes>
             {isLoggedIn ? (
               <>
-              <Route path="/:uid/destinations" element={<DestinationsPage setUserPic={setUserPic} uid={uid} />} />
+              <Route path="/:uid/destinations" element={<DestinationsPage setUserPic={setUserPic} setUserId={setUserId}  />} />
               <Route path="/:uid/favorites" element={<FavoritesPage />} />
               <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage/>} />
               <Route path="/:uid/travelDetails/:travelId/delete" element={<TravelDetailsDeletePage />} />
               <Route path="/:uid/travelDetails/:travelId/schedules" element={<SchedulesPage />} />
               <Route path="/:uid/travelDetails/:travelId/schedules/:day/:scheduleId" element={<ScheduleDetailPage />} />
-              <Route path="*" element={<DestinationsPage uid={uid} />} />
+              <Route path="*" element={<DestinationsPage setUserPic={setUserPic} setUserId={setUserId}  />} />
               </>
             ): (
               <>

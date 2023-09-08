@@ -61,6 +61,10 @@ const DropDownSchedule = ({ uid, selectedDestinationId, dropClass, setSchedules 
                     console.log(err.message);
                 })
         }
+        // return () => {
+        //     setSelectedTitle(1);
+        //     setSchedules([]); // Resetting schedules state
+        // };
     }, [selectedDestinationId, selectedTitle])
     
     
