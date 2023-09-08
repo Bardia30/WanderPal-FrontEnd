@@ -22,7 +22,7 @@ const SchedulesPage = () => {
 
   const [userDestination, setUserDestination] = useState([]);
 
-  const [travelObj, setTravelObj] = useState(null);
+  const [travelObj, setTravelObj] = useState({});
 
   // const [selectedDestinationId, setSelectedDestinationId] = useState("");
 
@@ -63,11 +63,6 @@ const SchedulesPage = () => {
       </h1>
       <div className='sched__controls'>
         <div className='sched__dropdowns'>
-          {/* <DropDownVacation
-            data={userDestinations}
-            dropClass="sched__drop-vacation"
-            setSelectedDestinationId={setSelectedDestinationId}
-          /> */}
           <DropDownSchedule
             selectedDestinationId={travelId}
             uid={uid}
