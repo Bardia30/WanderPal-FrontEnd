@@ -58,10 +58,10 @@ const MapCard = ({ setIsAddScheduleClicked, placeDetailsObj, placeType, theme })
                 <p className={`travel__restaurant-details travel__restaurant-details--${theme}`}><span className='travel__restaurant-details--bold'>Rating: </span>{placeDetailsObj.rating}</p>
                 <a className={`travel__restaurant-website-link travel__restaurant-website-link--${theme}`} href={placeDetailsObj.website}>Visit Website</a>
                 <div className='travel__restaurant-buttons'>
-                  <div>
+                  {/* <div>
                     <img className='travel__map-logo' src={theme === 'light' ? mapLogo : mapLogoDark} alt="map" />
                     <img className='travel__like-logo' src={theme === 'light' ? likeLogo : likeLogoDark} alt="like" />
-                  </div>
+                  </div> */}
                   <Button
                     text="Add to schedule"
                     buttonClass="travel__add-schedule-button"

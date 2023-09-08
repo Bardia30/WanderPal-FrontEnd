@@ -16,7 +16,7 @@ const getRestaurantsData = async (sw, ne) => {
               tr_longitude: ne.lng,
             },
             headers: {
-              'X-RapidAPI-Key': 'c80fd687f0mshcf2ee2641ee63cfp1ee440jsn8047ff636e22',
+              'X-RapidAPI-Key': '39b9283750mshc902153770c4beap1e0ac3jsn2410b639450c',
               'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
             }
           });
@@ -36,7 +36,7 @@ const getAttractionsData = async (sw, ne) => {
             tr_longitude: ne.lng,
           },
           headers: {
-            'X-RapidAPI-Key': 'c80fd687f0mshcf2ee2641ee63cfp1ee440jsn8047ff636e22',
+            'X-RapidAPI-Key': '39b9283750mshc902153770c4beap1e0ac3jsn2410b639450c',
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
           }
         });
