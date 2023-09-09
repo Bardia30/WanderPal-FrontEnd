@@ -21,6 +21,9 @@
         @include desktop{
             @include font($size: 3rem, $weight:600);
             text-align: left;
+            &--dark {
+                color:$primary-background;
+            }
         }
     }
     &__cards {
