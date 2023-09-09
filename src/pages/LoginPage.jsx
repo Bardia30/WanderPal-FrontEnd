@@ -40,7 +40,7 @@ const LoginPage = ({ setIsSidebar, login }) => {
 
 
 
-    axios.post('http://localhost:8080/user/login', userLoginObj)
+    axios.post('https://wanderpalapi.onrender.com/user/login', userLoginObj)
       .then(res => {
         const token = res.data.token;
         if (token) {

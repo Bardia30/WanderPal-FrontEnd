@@ -21,7 +21,7 @@ const DeleteTravelModal = ({ setIsDeleteClicked, travelId }) => {
   const handleDeleteButton = () => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.delete(`http://localhost:8080/destinations/${uid}/${travelId}`, {
+      axios.delete(`https://wanderpalapi.onrender.com/${uid}/${travelId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

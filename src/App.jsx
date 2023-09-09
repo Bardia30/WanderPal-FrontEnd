@@ -4,7 +4,6 @@ import SignUpPage from './pages/SignUpPage';
 import DestinationsPage from './pages/DestinationsPage';
 import TravelDetailsPage from './pages/TravelDetailsPage';
 import SchedulesPage from './pages/SchedulesPage';
-import TravelDetailsDeletePage from './pages/TravelDetailsDeletePage';
 import Sidebar from './components/Sidebar/Sidebar';
 import './App.scss';
 import ThemeContext from './components/context/theme-context';
@@ -72,7 +71,6 @@ function App() {
                 <>
                   <Route path="/:uid/destinations" element={<DestinationsPage setUserPic={setUserPic} setUserId={setUserId} />} />
                   <Route path="/:uid/travelDetails/:travelId" element={<TravelDetailsPage />} />
-                  <Route path="/:uid/travelDetails/:travelId/delete" element={<TravelDetailsDeletePage />} />
                   <Route path="/:uid/travelDetails/:travelId/schedules" element={<SchedulesPage />} />
                   <Route path="*" element={<DestinationsPage setUserPic={setUserPic} setUserId={setUserId} />} />
                 </>

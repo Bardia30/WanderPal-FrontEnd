@@ -20,11 +20,6 @@ const SignUpPage = ({ setIsSidebar, login }) => {
   }, [])
 
 
-  // const handleSignup = (e) => {
-  //   e.preventDefault();
-  //   auth.signup();
-  // }
-
   const [isUploaded, setIsUploaded] = useState(false);
 
 
@@ -32,14 +27,14 @@ const SignUpPage = ({ setIsSidebar, login }) => {
 
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState(false)
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   }
 
   const handleConfirmPasswordChange = (e) => {
-    // setConfirmPassword(e.target.value);
+    
     if (password !== e.target.value) {
       setPasswordConfirmMessage(true);
     } else {
@@ -83,7 +78,7 @@ const SignUpPage = ({ setIsSidebar, login }) => {
     } 
 
 
-    axios.post('http://localhost:8080/user/signup', formData)
+    axios.post('https://wanderpalapi.onrender.com/user/signup', formData)
       .then(res => {
         console.log(res)
         const token  = res.data.token;

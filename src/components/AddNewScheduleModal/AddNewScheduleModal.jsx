@@ -88,7 +88,7 @@ const AddNewScheduleModal = ({ uid, travelId, travelObj, placeType, placeDetails
         const token = localStorage.getItem('token');
 
         if (token) {
-            axios.post(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleObj.day}`, scheduleObj, {
+            axios.post(`https://wanderpalapi.onrender.com/schedules/${uid}/${travelId}/${scheduleObj.day}`, scheduleObj, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

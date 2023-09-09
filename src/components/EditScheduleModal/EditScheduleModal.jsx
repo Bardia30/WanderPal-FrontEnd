@@ -90,7 +90,7 @@ const EditScheduleModal = ({ setIsUpdated, scheduleId, duration, day, time, uid,
         const token = localStorage.getItem('token');
 
         if (token) {
-            axios.put(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleObj.day}/${scheduleId}`, scheduleObj, {
+            axios.put(`https://wanderpalapi.onrender.com/schedules/${uid}/${travelId}/${scheduleObj.day}/${scheduleId}`, scheduleObj, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

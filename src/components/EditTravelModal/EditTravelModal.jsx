@@ -98,7 +98,7 @@ const EditTravelModal = ({ setIsEditTravelClicked, travel, uid, setIsTravelUpdat
         const token = localStorage.getItem('token');
 
         if (token) {
-            axios.put(`http://localhost:8080/destinations/${uid}/${_id}`, updatedTravelObj, {
+            axios.put(`https://wanderpalapi.onrender.com/destinations/${uid}/${_id}`, updatedTravelObj, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

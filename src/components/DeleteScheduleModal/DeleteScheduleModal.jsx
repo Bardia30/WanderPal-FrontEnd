@@ -22,7 +22,7 @@ const DeleteScheduleModal = ({ setIsUpdated, scheduleId, setIsDeleteClicked, tra
     const token = localStorage.getItem('token');
 
     if (token) {
-      axios.delete(`http://localhost:8080/schedules/${uid}/${travelId}/${scheduleId}`, {
+      axios.delete(`https://wanderpalapi.onrender.com/schedules/${uid}/${travelId}/${scheduleId}`, {
         headers: {
           'Authorization': `Bearer ${token}` 
         }

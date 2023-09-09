@@ -115,7 +115,7 @@ const TravelDetailsPage = () => {
   useEffect(()=> {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`, {
+      axios.get(`https://wanderpalapi.onrender.com/destinations/${uid}/${travelId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

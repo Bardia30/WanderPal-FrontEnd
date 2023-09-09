@@ -38,12 +38,12 @@
         &--signup {
             @include desktop {
                 width:56.25rem;
-            height: 27.5rem;
+                height: 27.5rem;
             }
             
         }
         @include desktop {
-            width: 31.25rem;
+            // width: 31.25rem;
             border-radius: 32px;
         }
     }
@@ -106,7 +106,7 @@
         flex-direction :column;
         row-gap: 3rem;
         @include desktop {
-            column-gap: 0;
+            row-gap: 0;
         }
     }
     &__right-section {

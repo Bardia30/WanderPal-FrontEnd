@@ -26,10 +26,10 @@ const DestinationsPage = ({ setUserPic, setUserId }) => {
 
 
   useEffect(()=> {
-    axios.get(`http://localhost:8080/user/${uid}`)
+    axios.get(`https://wanderpalapi.onrender.com/user/${uid}`)
       .then(res => {
         setUserName(res.data.name);
-        setUserPic(`http://localhost:8080/${res.data.image}`);
+        setUserPic(`https://wanderpalapi.onrender.com/${res.data.image}`);
         setUserId(uid);
       })
       .catch(err => console.log(err.message))
@@ -39,7 +39,7 @@ const DestinationsPage = ({ setUserPic, setUserId }) => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      axios.get(`http://localhost:8080/destinations/${uid}`, {
+      axios.get(`https://wanderpalapi.onrender.com/destinations/${uid}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

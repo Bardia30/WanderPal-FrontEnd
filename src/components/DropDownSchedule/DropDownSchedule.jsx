@@ -23,7 +23,7 @@ const DropDownSchedule = ({ isUpdated, uid, selectedDestinationId, dropClass, se
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token && selectedDestinationId) {
-            axios.get(`http://localhost:8080/destinations/${uid}/${selectedDestinationId}`, {
+            axios.get(`https://wanderpalapi.onrender.com/destinations/${uid}/${selectedDestinationId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -59,7 +59,7 @@ const DropDownSchedule = ({ isUpdated, uid, selectedDestinationId, dropClass, se
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token && selectedDestinationId && selectedTitle) {
-            axios.get(`http://localhost:8080/schedules/${uid}/${selectedDestinationId}`, {
+            axios.get(`https://wanderpalapi.onrender.com/schedules/${uid}/${selectedDestinationId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

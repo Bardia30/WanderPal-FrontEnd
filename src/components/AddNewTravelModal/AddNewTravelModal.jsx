@@ -72,7 +72,7 @@ const AddNewTravelModal = ({ setAddNewModalClicked, uid }) => {
         const token = localStorage.getItem('token');
 
         if (token && userPostObj.destination ) {
-            axios.post(`http://localhost:8080/destinations/${uid}`, userPostObj, {
+            axios.post(`https://wanderpalapi.onrender.com/destinations/${uid}`, userPostObj, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

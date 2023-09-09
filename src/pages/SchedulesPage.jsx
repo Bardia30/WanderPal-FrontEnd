@@ -24,7 +24,7 @@ const SchedulesPage = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/user/${uid}`)
+    axios.get(`https://wanderpalapi.onrender.com/user/${uid}`)
       .then((res) => {
         setUserName(res.data.name);
       })
@@ -37,7 +37,7 @@ const SchedulesPage = () => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      axios.get(`http://localhost:8080/destinations/${uid}/${travelId}`, {
+      axios.get(`https://wanderpalapi.onrender.com/destinations/${uid}/${travelId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
